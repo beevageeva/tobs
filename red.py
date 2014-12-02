@@ -5,12 +5,15 @@ import numpy as np
 
 # Initialize IRAF with ccdred
 iraf.noao.imred(Stdout=1)
-iraf.noao.imred.ccdred(Stdout=1)
+#iraf.noao.imred.ccdred(Stdout=1)
+iraf.noao.imred.bias(Stdout=1)
 
-IMGDIR = "imagenesfits/" 
-OUTPUTDIR = "imagenesfitsNew/" 
+IMGDIR = "/scratch/M37/" 
+OUTPUTDIR = "/scratch/M37New/" 
 
-FILTERS = ["R", "V", "I"]
+#FILTERS = ["R", "V", "I", "B"]
+#for M37 no I filter
+FILTERS = ["R", "V", "B"]
 BIAS_SEC= "[1025:1056,1:1024]"
 DATA_SEC= "[1:1024,1:1024]"
 
@@ -216,28 +219,58 @@ def initDirs():
 			print "I/O error({0}): {1}".format(e.errno, e.strerror)
 			continue		
 		header = hdulist[0].header
-		shutil.copy(fitsfile, os.path.join(OUTPUTDIR, header["IMAGETYP"], header["INSFILTE"]))
+		#in M37 IMAGETYP = object for all
+		#objectType = header["IMAGETYP"]
+		if(header["OBJECT"].startswith("flat")):
+			objectType = "flat"
+		else:
+			objectType = "object"		
+		insfilter =  header["INSFILTE"]
+		if insfilter in FILTERS:
+			shutil.copy(fitsfile, os.path.join(OUTPUTDIR, objectType, insfilter))
+			os.system("echo %s >> %s" % (os.path.basename(fitsfile), os.path.join(OUTPUTDIR, objectType, insfilter, "list" )))
+
+
+def getFitsFileList(expr):
+	from glob import glob 
+	return glob.glob(expr).join(",")
+
 
 
 def trimAndOverscan():
 	print "TrimAndOverscan start"
-	#put all others params to no , they may be set by previous actions
-	iraf.ccdproc.setParam('zerocor', 'no')
-	iraf.ccdproc.setParam('flatcor', 'no')
-	iraf.ccdproc.setParam('fixpix', 'no')
-	iraf.ccdproc.setParam('darkcor', 'no')
-	iraf.ccdproc.setParam('illumcor', 'no')
-	#trim and overscan flat and object files
-	iraf.ccdproc.setParam('trim', 'yes')
-	iraf.ccdproc.setParam('trimsec', DATA_SEC)
-	iraf.ccdproc.setParam('overscan', 'yes')
-	iraf.ccdproc.setParam('biassec', BIAS_SEC)
-	#online
-	iraf.ccdproc.setParam('output', '')
+#	#put all others params to no , they may be set by previous actions
+#	iraf.ccdproc.setParam('instrum', '')
+#	iraf.ccdproc.setParam('zerocor', 'no')
+#	iraf.ccdproc.setParam('flatcor', 'no')
+#	iraf.ccdproc.setParam('fixpix', 'no')
+#	iraf.ccdproc.setParam('darkcor', 'no')
+#	iraf.ccdproc.setParam('illumcor', 'no')
+#	#trim and overscan flat and object files
+#	iraf.ccdproc.setParam('trim', 'yes')
+#	iraf.ccdproc.setParam('trimsec', DATA_SEC)
+#	iraf.ccdproc.setParam('overscan', 'yes')
+#	iraf.ccdproc.setParam('biassec', BIAS_SEC)
+#	#online
+#	iraf.ccdproc.setParam('output', '')
+
+	#COLBIAS
+	iraf.colbias.unlearn()
+	iraf.colbias.setParam('bias', BIAS_SEC)
+	iraf.colbias.setParam('trim', DATA_SEC)
+	iraf.colbias.setParam("median", "no")
+	iraf.colbias.setParam("interactive", "no")
+
 	for imgtype in ["flat", "object"]:
 		for f in FILTERS:
-			iraf.ccdproc.setParam("images", os.path.join(OUTPUTDIR, imgtype, f) + "/*.fits")
-			iraf.ccdproc()
+			#iraf.ccdproc.setParam("images", os.path.join(OUTPUTDIR, imgtype, f) + "/*.fits")
+			#iraf.ccdproc()
+			os.chdir(os.path.join(OUTPUTDIR, imgtype, f))
+			print("Current directory = %s" % os.getcwd())
+			#set it again
+			iraf.colbias.setParam('input',  "@list")
+			iraf.colbias.setParam('output', "@list")
+			iraf.colbias()
 	print "TrimAndOverscan end"
 
 
@@ -251,6 +284,7 @@ def createFlatFiles():
 			iraf.imcombine.setParam("input", os.path.join(OUTPUTDIR, "flat", f) + "/*.fits")
 			flatFile = os.path.join(OUTPUTDIR, "flat", f , "Flat.fits")
 			if os.path.exists(flatFile):
+				print("flatFile %s alreday exists deleting"  % flatFile)
 				os.remove(flatFile)
 			iraf.imcombine.setParam("output", flatFile)
 			iraf.imcombine()
@@ -258,9 +292,13 @@ def createFlatFiles():
 			#imstat
 			res = iraf.imstat(flatFile, Stdout=1)
 			print(res[0].strip()) 
+			print(res[1].strip()) 
 			resArray = re.split("\s+", res[1].strip())
 			maxValue = float(resArray[len(resArray) - 1])
 			flatNormFile = os.path.join(OUTPUTDIR, "flat", f , "FlatNorm.fits")
+			if os.path.exists(flatNormFile):
+				print("flatNormFile %s alreday exists deleting"  % flatNormFile)
+				os.remove(flatNormFile)
 			#divide by max value
 			iraf.imarith(flatFile, '/', maxValue, flatNormFile)
 		else:
@@ -295,11 +333,11 @@ def flatCorrection():
 
 
 #showImageProperties()
-initDirs()
+#initDirs()
 #IMAGE CORRECTION
-trimAndOverscan()
+#trimAndOverscan()
 createFlatFiles()
-flatCorrection() 
+#flatCorrection() 
 #ILLUMINATION CORR
 #showFlatProp()
 
