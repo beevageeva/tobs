@@ -7,15 +7,13 @@ import numpy as np
 iraf.noao.imred(Stdout=1)
 iraf.noao.imred.ccdred(Stdout=1)
 
-IMGDIR = "/net/rusia/scratch/TecnicasOb/Nov1/" 
-#OUTPUTDIR = os.path.join(IMGDIR , "out")
-OUTPUTDIR = "/scratch/img112/"
+IMGDIR = "imagenesfits/" 
+OUTPUTDIR = "imagenesfitsNew/" 
 
-FILTERS = ["R", "V", "I", "B", "U"]
+FILTERS = ["R", "V", "I"]
 BIAS_SEC= "[1025:1056,1:1024]"
 DATA_SEC= "[1:1024,1:1024]"
 
-star_pos = {"M37":{'dec': '32:00:00'}, "RU149":{"ra":"07:24:13"	, 'dec':"-00:31:58"}	 }
 
 def createDir(folder):
 	if os.path.exists(folder):
@@ -181,10 +179,8 @@ def showTimeConv():
 #END TIME
 
 
-
-def initDirs():
-	#bias
-	createDir(os.path.join(OUTPUTDIR, "bias"))
+#TODO hselect not working
+def initDirsNotWorking():
 	for f in FILTERS:
 		#flat
 		fdir = 	os.path.join(OUTPUTDIR, "flat", f)
@@ -193,11 +189,6 @@ def initDirs():
 		fdir = 	os.path.join(OUTPUTDIR, "object", f)
 		createDir(fdir)
 	iraf.hselect.setParam("fields", "$I")
-	#copy bias files
-	iraf.hselect.setParam("images", IMGDIR + "*.fits")
-	iraf.hselect.setParam("expr", 'IMAGETYP=="bias"')
-	for imgname in iraf.hselect(Stdout=1):
-		shutil.copy(imgname, os.path.join(OUTPUTDIR, "bias"))
 	for f in FILTERS:
 		#copy flat files	
 		iraf.hselect.setParam("expr", 'IMAGETYP=="flat"&&INSFILTE=="%s"' % f)
@@ -209,6 +200,25 @@ def initDirs():
 		for imgname in iraf.hselect(Stdout=1):
 			shutil.copy(imgname, os.path.join(OUTPUTDIR, "object", f))
 		
+def initDirs():
+	import pyfits,glob	
+	for f in FILTERS:
+		#flat
+		fdir = 	os.path.join(OUTPUTDIR, "flat", f)
+		createDir(fdir)
+		#object
+		fdir = 	os.path.join(OUTPUTDIR, "object", f)
+		createDir(fdir)
+	for fitsfile in glob.glob("%s/*.fits" % IMGDIR):
+		try:
+			hdulist = pyfits.open(fitsfile)
+		except IOError as e:
+			print "I/O error({0}): {1}".format(e.errno, e.strerror)
+			continue		
+		header = hdulist[0].header
+		shutil.copy(fitsfile, os.path.join(OUTPUTDIR, header["IMAGETYP"], header["INSFILTE"]))
+
+
 def trimAndOverscan():
 	print "TrimAndOverscan start"
 	#put all others params to no , they may be set by previous actions
@@ -228,106 +238,13 @@ def trimAndOverscan():
 		for f in FILTERS:
 			iraf.ccdproc.setParam("images", os.path.join(OUTPUTDIR, imgtype, f) + "/*.fits")
 			iraf.ccdproc()
-	#only trim for bias files	
-	if(os.listdir(os.path.join(OUTPUTDIR, "bias"))):
-		iraf.ccdproc.setParam('overscan', 'no')
-		iraf.ccdproc.setParam('biassec', '')
-		iraf.hselect.setParam("images",   os.path.join(OUTPUTDIR, "bias") + "/*.fits")
-		iraf.ccdproc()
-	else:
-		print "No Bias Files present"	
 	print "TrimAndOverscan end"
 
-def createZeroFile():
-	print "CreateZeroFile start"
-	if(os.listdir(os.path.join(OUTPUTDIR, "bias"))):
-		iraf.imcombine.setParam("input", os.path.join(OUTPUTDIR, "bias") + "/*.fits")
-		zeroFile = os.path.join(OUTPUTDIR, "bias", "Zero.fits")
-		if os.path.exists(zeroFile):
-			os.remove(zeroFile)
-		iraf.imcombine.setParam("output", zeroFile)
-		iraf.imcombine()
-	else:
-		print("NO BIAS FILES PRESENT")
-	print "CreateZeroFile end"
-
-
-
-# image param for ccdmask is the CCD image to use in defining bad pixels. Typically this is a flat field image or, even better, the ratio of two flat field images of different exposure levels.
-def createBadPixelsMaskFiles():
-	print "CreateBadPixelsMaskFiles start"
-	for f in FILTERS:
-		resFile = os.path.join(OUTPUTDIR, "flat", f, "minExpDivMaxExp.fits")
-		maskFile = resFile[:-4]+ "mask"
-		if os.path.exists(resFile):
-			os.remove(resFile)	
-		if os.path.exists(maskFile + ".pl"):
-			os.remove(maskFile + ".pl")	
-		fdir = 	os.path.join(OUTPUTDIR, "flat", f)
-		iraf.hselect.setParam("images", fdir + "/Nov*.fits") #TODO because it's done after flat combine
-		iraf.hselect.setParam("fields", "$I,EXPTIME")
-		iraf.hselect.setParam("expr", 'yes')
-		maxExpTime = 0
-		minExpTime = np.inf
-		minExpFlatFile = None
-		maxExpFlatFile = None
-		for rs in iraf.hselect(Stdout=1, mode="h"):
-			r = rs.split("\t")
-			print("image %s" % r[0])
-			try:
-				expTime = float(r[1])
-			except ValueError:
-				print("exptime not float %s, set to 1"%r[1])
-				expTime = 1
-			print("expTime %4.2f" % expTime)
-			if(expTime<minExpTime):
-				minExpTime = expTime
-				minExpFlatFile = r[0]
-			elif(expTime>maxExpTime):
-				maxExpTime = expTime
-				maxExpFlatFile = r[0]
-		print("filter=%s minExpTime = %4.3f in flatfile = %s, maxExpTime = %4.3f in flatfile = %s "%(f,minExpTime, minExpFlatFile,maxExpTime, maxExpFlatFile))
-		if not minExpFlatFile is None:
-			#now divide the 2 images
-			iraf.imarith.setParam("operand1", minExpFlatFile)	
-			iraf.imarith.setParam("operand2", maxExpFlatFile)	
-			iraf.imarith.setParam("op", "/")	
-			iraf.imarith.setParam("result", resFile)
-			iraf.imarith(Stdout=1, mode="h")	
-			iraf.ccdmask.setParam("image", resFile)
-			iraf.ccdmask.setParam("mask", maskFile)
-			iraf.ccdmask(Stdout=1, mode="h")
-	print "CreateBadPixelsMaskFiles end"
-
-
-
-def fixBadPixels():
-	print "FixBadPixels start"
-	#for f in FILTERS:
-	for f in ["V"]:
-		maskfile = os.path.join(OUTPUTDIR, "flat", f, "minExpDivMaxExp.fits")[:-4] + "mask"
-		#iraf.fixpix.setParam("images", os.path.join(OUTPUTDIR, "flat", f) + "/*.fits")	
-		iraf.fixpix.setParam("images","/home/bpb/asign/tobs/pyraf/Nov010065.fits")	
-		iraf.fixpix.setParam("masks", maskfile)	
-		iraf.fixpix(Stdout=1, mode="h")
-		#TODO  TRY THIS
-		#iraf.ccdproc.setParam('fixpix', 'yes')
-		#iraf.ccdproc.setParam('fixfile', maskfile)
-#		iraf.ccdproc.setParam('zerocor', 'no')
-#		iraf.ccdproc.setParam('flatcor', 'no')
-#		iraf.ccdproc.setParam('fixpix', 'no')
-#		iraf.ccdproc.setParam('darkcor', 'no')
-#		iraf.ccdproc.setParam('illumcor', 'no')
-#		iraf.ccdproc.setParam('trim', 'no')
-#		iraf.ccdproc.setParam('overscan', 'no')
-		
-	print "FixBadPixels end"
-		
-		
 
 
 
 def createFlatFiles():
+	import re
 	print "CreateFlatFiles start"
 	for f in FILTERS:
 		if(os.listdir(os.path.join(OUTPUTDIR, "flat", f))):
@@ -337,36 +254,20 @@ def createFlatFiles():
 				os.remove(flatFile)
 			iraf.imcombine.setParam("output", flatFile)
 			iraf.imcombine()
+			#NORMALIZE
+			#imstat
+			res = iraf.imstat(flatFile, Stdout=1)
+			print(res[0].strip()) 
+			resArray = re.split("\s+", res[1].strip())
+			maxValue = float(resArray[len(resArray) - 1])
+			flatNormFile = os.path.join(OUTPUTDIR, "flat", f , "FlatNorm.fits")
+			#divide by max value
+			iraf.imarith(flatFile, '/', maxValue, flatNormFile)
 		else:
 			print("NO FLAT FILES for filter %s PRESENT" %f)
 	print "CreateFlatFiles end"
 
 
-def zeroCorrection():
-	print "ZeroCorrection start"
-	#put all others params to no , they may be set by previous actions
-	zerofilename = os.path.join(OUTPUTDIR, "bias",  "Zero.fits")
-	if os.path.isfile(zerofilename):
-		iraf.ccdproc.setParam('flatcor', 'no')
-		iraf.ccdproc.setParam('fixpix', 'no')
-		iraf.ccdproc.setParam('darkcor', 'no')
-		iraf.ccdproc.setParam('illumcor', 'no')
-		iraf.ccdproc.setParam('trim', 'no')
-		iraf.ccdproc.setParam('overscan', 'no')
-		#trim and overscan flat and object files
-		iraf.ccdproc.setParam('zerocor', 'yes')
-		iraf.ccdproc.setParam('zero', zerofilename)
-		iraf.ccdproc.setParam('trimsec', '')
-		iraf.ccdproc.setParam('biassec', '')
-		#online
-		iraf.ccdproc.setParam('output', '')
-		for imgtype in ["flat", "object"]:
-			for f in FILTERS:
-				iraf.ccdproc.setParam("images", os.path.join(OUTPUTDIR, imgtype, f) + "/*.fits")
-				iraf.ccdproc()
-	else:	
-		print "Zero file %s not present" % zerofilename
-	print "ZeroCorrection end"
 
 def flatCorrection():
 	print "FlatCorrection start"
@@ -383,7 +284,7 @@ def flatCorrection():
 	#online
 	iraf.ccdproc.setParam('output', '')
 	for f in FILTERS:	
-		flatfilename = os.path.join(OUTPUTDIR, "flat", f, "Flat.fits")
+		flatfilename = os.path.join(OUTPUTDIR, "flat", f, "FlatNorm.fits")
 		if os.path.isfile(flatfilename):
 			iraf.ccdproc.setParam('flat', flatfilename)
 			iraf.ccdproc.setParam("images", os.path.join(OUTPUTDIR, "object", f) + "/*.fits")
@@ -394,20 +295,18 @@ def flatCorrection():
 
 
 #showImageProperties()
-#initDirs()
+initDirs()
 #IMAGE CORRECTION
-#trimAndOverscan()
-#createZeroFile()
-#zeroCorrection()
-#createFlatFiles()
-#flatCorrection() 
+trimAndOverscan()
+createFlatFiles()
+flatCorrection() 
 #ILLUMINATION CORR
 #showFlatProp()
 
 #END ILLUMINATION CORR
 
 #createBadPixelsMaskFiles()
-fixBadPixels()
+#fixBadPixels()
 #END IMAGE CORRECTION
 
 #showObjProp()
