@@ -8,8 +8,8 @@ iraf.noao.imred(Stdout=1)
 #iraf.noao.imred.ccdred(Stdout=1)
 iraf.noao.imred.bias(Stdout=1)
 
-IMGDIR = "/scratch/M37/" 
-OUTPUTDIR = "/scratch/M37New/" 
+IMGDIR = "/scratch1/tobs/M37/" 
+OUTPUTDIR = "/scratch1/tobs/M37New/" 
 
 #FILTERS = ["R", "V", "I", "B"]
 #for M37 no I filter
@@ -265,12 +265,28 @@ def trimAndOverscan():
 		for f in FILTERS:
 			#iraf.ccdproc.setParam("images", os.path.join(OUTPUTDIR, imgtype, f) + "/*.fits")
 			#iraf.ccdproc()
-			os.chdir(os.path.join(OUTPUTDIR, imgtype, f))
-			print("Current directory = %s" % os.getcwd())
-			#set it again
-			iraf.colbias.setParam('input',  "@list")
-			iraf.colbias.setParam('output', "@list")
-			iraf.colbias()
+			#COLBIAS
+#			#list does not work
+#			os.chdir(os.path.join(OUTPUTDIR, imgtype, f))
+#			print("Current directory = %s" % os.getcwd())
+#			import subprocess
+#			outputPwd = subprocess.Popen('pwd', stdout=subprocess.PIPE).stdout.read()
+#			print("outPwd = %s" % outputPwd)
+#			#set it again
+#			iraf.colbias.setParam('input',  "@list")
+#			iraf.colbias.setParam('output', "@list")
+#			iraf.colbias()
+#			#end list
+			#one by one
+			with open(os.path.join(OUTPUTDIR, imgtype, f, "list")) as file1:
+				for line in file1:
+					filename = line.strip()
+					if filename!="":
+						iraf.colbias.setParam('input',  os.path.join(OUTPUTDIR, imgtype, f, filename))
+						iraf.colbias.setParam('output', os.path.join(OUTPUTDIR, imgtype, f, filename))
+						iraf.colbias()
+
+
 	print "TrimAndOverscan end"
 
 
@@ -333,10 +349,10 @@ def flatCorrection():
 
 
 #showImageProperties()
-#initDirs()
+initDirs()
 #IMAGE CORRECTION
-#trimAndOverscan()
-createFlatFiles()
+trimAndOverscan()
+#createFlatFiles()
 #flatCorrection() 
 #ILLUMINATION CORR
 #showFlatProp()
