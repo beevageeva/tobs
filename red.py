@@ -310,13 +310,16 @@ def createFlatFiles():
 			print(res[0].strip()) 
 			print(res[1].strip()) 
 			resArray = re.split("\s+", res[1].strip())
-			maxValue = float(resArray[len(resArray) - 1])
+			#max value
+			#toDivValue = float(resArray[5])
+			#meanValue
+			toDivValue = float(resArray[2])
 			flatNormFile = os.path.join(OUTPUTDIR, "flat", f , "FlatNorm.fits")
 			if os.path.exists(flatNormFile):
 				print("flatNormFile %s alreday exists deleting"  % flatNormFile)
 				os.remove(flatNormFile)
 			#divide by max value
-			iraf.imarith(flatFile, '/', maxValue, flatNormFile)
+			iraf.imarith(flatFile, '/', toDivValue, flatNormFile)
 		else:
 			print("NO FLAT FILES for filter %s PRESENT" %f)
 	print "CreateFlatFiles end"
@@ -326,34 +329,42 @@ def createFlatFiles():
 def flatCorrection():
 	print "FlatCorrection start"
 	#put all others params to no , they may be set by previous actions
-	iraf.ccdproc.setParam('flatcor', 'yes')
-	iraf.ccdproc.setParam('fixpix', 'no')
-	iraf.ccdproc.setParam('darkcor', 'no')
-	iraf.ccdproc.setParam('illumcor', 'no')
-	iraf.ccdproc.setParam('trim', 'no')
-	iraf.ccdproc.setParam('overscan', 'no')
-	iraf.ccdproc.setParam('zerocor', 'no')
-	iraf.ccdproc.setParam('trimsec', '')
-	iraf.ccdproc.setParam('biassec', '')
-	#online
-	iraf.ccdproc.setParam('output', '')
+	#WITH ccdproc
+#	iraf.ccdproc.setParam('flatcor', 'yes')
+#	iraf.ccdproc.setParam('fixpix', 'no')
+#	iraf.ccdproc.setParam('darkcor', 'no')
+#	iraf.ccdproc.setParam('illumcor', 'no')
+#	iraf.ccdproc.setParam('trim', 'no')
+#	iraf.ccdproc.setParam('overscan', 'no')
+#	iraf.ccdproc.setParam('zerocor', 'no')
+#	iraf.ccdproc.setParam('trimsec', '')
+#	iraf.ccdproc.setParam('biassec', '')
+#	#online
+#	iraf.ccdproc.setParam('output', '')
 	for f in FILTERS:	
 		flatfilename = os.path.join(OUTPUTDIR, "flat", f, "FlatNorm.fits")
 		if os.path.isfile(flatfilename):
-			iraf.ccdproc.setParam('flat', flatfilename)
-			iraf.ccdproc.setParam("images", os.path.join(OUTPUTDIR, "object", f) + "/*.fits")
-			iraf.ccdproc()
+#			#WITH ccdproc
+#			iraf.ccdproc.setParam('flat', flatfilename)
+#			iraf.ccdproc.setParam("images", os.path.join(OUTPUTDIR, "object", f) + "/*.fits")
+#			iraf.ccdproc()
+			with open(os.path.join(OUTPUTDIR, "object", f, "list")) as file1:
+				for line in file1:
+					objfilename = line.strip()
+					if objfilename!="":
+						objFullfilename = os.path.join(OUTPUTDIR, "object", f,	line.strip())
+						iraf.imarith(objFullfilename, '/', flatfilename, objFullfilename)
 		else:
 			print "Flat file %s not present" % flatfilename
 	print "FlatCorrection end"
 
 
 #showImageProperties()
-initDirs()
+#initDirs()
 #IMAGE CORRECTION
-trimAndOverscan()
+#trimAndOverscan()
 #createFlatFiles()
-#flatCorrection() 
+flatCorrection() 
 #ILLUMINATION CORR
 #showFlatProp()
 
