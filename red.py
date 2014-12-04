@@ -8,8 +8,8 @@ iraf.noao.imred(Stdout=1)
 #iraf.noao.imred.ccdred(Stdout=1)
 iraf.noao.imred.bias(Stdout=1)
 
-IMGDIR = "/scratch1/tobs/M37/" 
-OUTPUTDIR = "/scratch1/tobs/M37New/" 
+IMGDIR = "/scratch/M37/" 
+OUTPUTDIR = "/scratch/M37New/" 
 
 #FILTERS = ["R", "V", "I", "B"]
 #for M37 no I filter
@@ -44,7 +44,7 @@ def showObjProp():
 		print("start %s" % ft)
 		print "object\tzenith dist\tright asc\tdecl\texptime\tairmass\tUT"
 		iraf.hselect.setParam("images", os.path.join(OUTPUTDIR, "object", ft) + "/*.fits")
-		iraf.hselect.setParam("fields", "OBJECT,ZD,RA,DEC,EXPTIME,AIRMASS,UT")
+		iraf.hselect.setParam("fields", "$I,OBJECT,ZD,RA,DEC,EXPTIME,AIRMASS,UT")
 		iraf.hselect.setParam("expr", 'yes')
 		for r in iraf.hselect(Stdout=1, mode="h"):
 			print r
@@ -282,9 +282,11 @@ def trimAndOverscan():
 				for line in file1:
 					filename = line.strip()
 					if filename!="":
-						iraf.colbias.setParam('input',  os.path.join(OUTPUTDIR, imgtype, f, filename))
-						iraf.colbias.setParam('output', os.path.join(OUTPUTDIR, imgtype, f, filename))
-						iraf.colbias()
+						print("Colbias %s " % os.path.join(OUTPUTDIR, imgtype, f, filename) )
+#						iraf.colbias.setParam('input',  os.path.join(OUTPUTDIR, imgtype, f, filename))
+#						iraf.colbias.setParam('output', os.path.join(OUTPUTDIR, imgtype, f, filename))
+#						iraf.colbias()
+						iraf.colbias(os.path.join(OUTPUTDIR, imgtype, f, filename), os.path.join(OUTPUTDIR, imgtype, f, filename))
 
 
 	print "TrimAndOverscan end"
@@ -364,11 +366,11 @@ def flatCorrection():
 #IMAGE CORRECTION
 #trimAndOverscan()
 #createFlatFiles()
-flatCorrection() 
-#ILLUMINATION CORR
-#showFlatProp()
+#flatCorrection() 
 
-#END ILLUMINATION CORR
+#showFlatProp()
+showObjProp()
+
 
 #createBadPixelsMaskFiles()
 #fixBadPixels()

@@ -13,7 +13,8 @@ header = hdulist[0].header
 print("\nfitsfile %s" % fitsfile)
 print(header)
 for k in header.keys():
-	print("header[%s] = %s" % (k, header[k]))
+	if(k.strip()!=""):	
+		print("header[%s] = %s" % (k, header[k]))
 
 
 		

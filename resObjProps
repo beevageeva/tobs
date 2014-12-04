@@ -1,0 +1,78 @@
+start showObjProp
+start R
+object	zenith dist	right asc	decl	exptime	airmass	UT
+/scratch/M37New/object/R/Nov30033.fits	pg2213R	29:51:29	22:16:23	"- 0:19:47"	100.	1.153	19:53:25
+/scratch/M37New/object/R/Nov30037.fits	pg2213	28:49:11	22:16:24	"- 0:19:46"	100.	1.141	20:14:54
+/scratch/M37New/object/R/Nov30041.fits	pg2331	27:29:22	23:33:36	"+ 5:47:15"	100.	1.127	20:39:20
+/scratch/M37New/object/R/Nov30045.fits	pg0231	56:18:51	2:33:31	"+ 5:19:29"	100.	1.799	21:08:16
+/scratch/M37New/object/R/Nov30049.fits	"PHL1027 (900R)"	37:56:21	1:32:58	"+ 3:39:39"	900.	1.267	21:43:47
+/scratch/M37New/object/R/Nov30050.fits	"PHL1027 (900R)"	35:09:59	1:32:58	"+ 3:39:37"	900.	1.223	21:59:35
+/scratch/M37New/object/R/Nov30051.fits	"PHL1027 (900R)"	32:35:34	1:32:58	"+ 3:39:36"	900.	1.186	22:15:21
+/scratch/M37New/object/R/Nov30052.fits	"PHL1027 (900R)"	30:15:18	1:33:00	"+ 3:39:35"	900.	1.157	22:31:13
+/scratch/M37New/object/R/Nov30053.fits	pg2213	45:30:00	22:16:17	"- 0:20:27"	100.	1.425	22:56:01
+/scratch/M37New/object/R/Nov30057.fits	m37	57:39:10	5:52:21	+32:37:16	500.	1.864	23:32:47
+/scratch/M37New/object/R/Nov30060.fits	m37	47:53:37	5:52:20	+32:36:50	200.	1.49	0:20:10
+/scratch/M37New/object/R/Nov30062.fits	m37	44:21:51	5:52:22	+32:36:44	60.	1.397	0:37:09
+/scratch/M37New/object/R/Nov30065.fits	m37	39:31:27	5:51:52	+32:36:37	60.	1.296	0:59:46
+/scratch/M37New/object/R/Nov30068.fits	m37	37:06:59	5:51:51	+32:36:32	600.	1.253	1:11:13
+/scratch/M37New/object/R/Nov30071.fits	m37	25:59:47	5:51:52	+32:29:43	60.	1.112	2:03:56
+/scratch/M37New/object/R/Nov30074.fits	m37	22:49:18	5:51:51	+32:29:43	300.	1.085	2:18:57
+/scratch/M37New/object/R/Nov30077.fits	m37	17:21:43	5:51:52	+32:29:43	300.	1.048	2:44:57
+/scratch/M37New/object/R/Nov30080.fits	m37	9:35:47	5:52:25	+32:29:44	300.	1.014	3:23:36
+/scratch/M37New/object/R/Nov30083.fits	m37	5:10:55	5:52:24	+32:29:45	300.	1.004	3:49:28
+/scratch/M37New/object/R/Nov30086.fits	m37	4:58:19	5:52:26	+32:29:46	60.	1.004	4:15:52
+/scratch/M37New/object/R/Nov30089.fits	pg0918	49:20:07	9:21:27	"+ 2:48:29"	100.	1.533	4:34:54
+/scratch/M37New/object/R/Nov30093.fits	pg0231	63:55:05	2:33:39	"+ 5:19:37"	60.	2.265	4:57:19
+/scratch/M37New/object/R/Nov30096.fits	m37	17:34:00	5:52:10	+32:32:46	60.	1.049	5:22:17
+/scratch/M37New/object/R/Nov30097.fits	m37	18:08:23	5:52:12	+32:32:47	30.	1.052	5:25:03
+/scratch/M37New/object/R/Nov30100.fits	m37	19:18:14	5:52:12	+32:32:47	30.	1.059	5:30:36
+/scratch/M37New/object/R/Nov30103.fits	m37	20:28:19	5:52:11	+32:32:48	30.	1.067	5:36:09
+/scratch/M37New/object/R/Nov30106.fits	m37	24:31:00	5:52:29	+32:35:35	300.	1.099	5:55:39
+start V
+object	zenith dist	right asc	decl	exptime	airmass	UT
+/scratch/M37New/object/V/Nov30035.fits	pg2213V	29:29:05	22:16:24	"- 0:19:46"	200.	1.148	19:59:22
+/scratch/M37New/object/V/Nov30039.fits	pg2213	28:42:23	22:16:24	"- 0:19:46"	200.	1.14	20:19:52
+/scratch/M37New/object/V/Nov30043.fits	pg2331	26:49:43	23:33:34	"+ 5:47:15"	200.	1.12	20:44:17
+/scratch/M37New/object/V/Nov30047.fits	pg0231	55:14:17	2:33:29	"+ 5:19:25"	200.	1.75	21:13:16
+/scratch/M37New/object/V/Nov30055.fits	pg2213	46:25:32	22:16:18	"- 0:20:26"	200.	1.449	23:00:58
+/scratch/M37New/object/V/Nov30058.fits	m37	55:45:58	5:52:19	+32:37:09	900.	1.774	23:41:59
+/scratch/M37New/object/V/Nov30061.fits	m37	47:01:40	5:52:22	+32:36:50	500.	1.465	0:24:22
+/scratch/M37New/object/V/Nov30063.fits	m37	43:58:23	5:52:21	+32:36:42	180.	1.388	0:39:01
+/scratch/M37New/object/V/Nov30066.fits	m37	39:07:34	5:51:51	+32:36:37	180.	1.288	1:01:39
+/scratch/M37New/object/V/Nov30069.fits	m37	34:50:05	5:51:52	+32:36:30	900.	1.218	1:22:05
+/scratch/M37New/object/V/Nov30072.fits	m37	25:35:52	5:51:51	+32:29:43	180.	1.109	2:05:48
+/scratch/M37New/object/V/Nov30075.fits	m37	21:35:29	5:51:52	+32:29:43	500.	1.075	2:24:48
+/scratch/M37New/object/V/Nov30078.fits	m37	16:08:35	5:51:53	+32:29:42	500.	1.041	2:50:49
+/scratch/M37New/object/V/Nov30081.fits	m37	8:28:13	5:52:24	+32:29:44	500.	1.011	3:29:28
+/scratch/M37New/object/V/Nov30084.fits	m37	4:33:28	5:52:25	+32:29:43	500.	1.003	3:55:20
+/scratch/M37New/object/V/Nov30087.fits	m37	5:11:55	5:52:25	+32:29:43	180.	1.004	4:17:44
+/scratch/M37New/object/V/Nov30090.fits	pg0918	48:48:53	9:21:24	"+ 2:48:26"	200.	1.517	4:37:26
+/scratch/M37New/object/V/Nov30094.fits	pg0231	64:19:16	2:33:40	"+ 5:19:40"	120.	2.298	4:59:11
+/scratch/M37New/object/V/Nov30098.fits	m37	18:25:41	5:52:12	+32:32:47	60.	1.054	5:26:26
+/scratch/M37New/object/V/Nov30101.fits	m37	19:35:39	5:52:11	+32:32:47	60.	1.061	5:31:59
+/scratch/M37New/object/V/Nov30104.fits	m37	20:45:15	5:52:12	+32:32:48	60.	1.069	5:37:31
+/scratch/M37New/object/V/Nov30107.fits	m37	25:45:38	5:52:28	+32:35:36	500.	1.11	6:01:31
+start B
+object	zenith dist	right asc	decl	exptime	airmass	UT
+/scratch/M37New/object/B/Nov30036.fits	pg2213B	29:09:20	22:16:22	"- 0:19:45"	300.	1.145	20:05:43
+/scratch/M37New/object/B/Nov30040.fits	pg2213	28:38:56	22:16:25	"- 0:19:45"	300.	1.139	20:24:03
+/scratch/M37New/object/B/Nov30044.fits	pg2331	26:18:13	23:33:35	"+ 5:47:13"	300.	1.115	20:48:28
+/scratch/M37New/object/B/Nov30048.fits	pg0231	54:20:30	2:33:29	"+ 5:19:22"	300.	1.712	21:17:28
+/scratch/M37New/object/B/Nov30056.fits	pg2213	47:13:12	22:16:18	"- 0:20:23"	300.	1.471	23:05:11
+/scratch/M37New/object/B/Nov30059.fits	m37	52:30:58	5:52:22	+32:37:02	1200.	1.64	23:57:51
+/scratch/M37New/object/B/Nov30064.fits	m37	43:09:53	5:52:22	+32:36:39	200.	1.37	0:42:53
+/scratch/M37New/object/B/Nov30067.fits	m37	38:18:55	5:51:51	+32:36:34	200.	1.274	1:05:31
+/scratch/M37New/object/B/Nov30070.fits	m37	31:28:58	5:51:51	+32:36:24	1200.	1.172	1:37:57
+/scratch/M37New/object/B/Nov30073.fits	m37	24:46:52	5:51:51	+32:29:44	200.	1.101	2:09:40
+/scratch/M37New/object/B/Nov30076.fits	m37	19:39:34	5:51:53	+32:29:42	600.	1.062	2:34:00
+/scratch/M37New/object/B/Nov30079.fits	m37	14:13:59	5:51:52	+32:29:43	600.	1.032	3:00:01
+/scratch/M37New/object/B/Nov30082.fits	m37	6:49:15	5:52:25	+32:29:43	600.	1.007	3:38:40
+/scratch/M37New/object/B/Nov30085.fits	m37	4:12:15	5:52:24	+32:29:44	600.	1.003	4:04:32
+/scratch/M37New/object/B/Nov30088.fits	m37	5:43:52	5:52:26	+32:29:44	200.	1.005	4:21:36
+/scratch/M37New/object/B/Nov30091.fits	pg0918	47:57:57	9:21:24	"+ 2:48:26"	300.	1.492	4:41:38
+/scratch/M37New/object/B/Nov30095.fits	pg0231	64:56:58	2:33:39	"+ 5:19:41"	150.	2.351	5:02:03
+/scratch/M37New/object/B/Nov30099.fits	m37	18:49:22	5:52:11	+32:32:47	90.	1.056	5:28:18
+/scratch/M37New/object/B/Nov30102.fits	m37	19:59:11	5:52:11	+32:32:47	90.	1.064	5:33:51
+/scratch/M37New/object/B/Nov30105.fits	m37	21:08:48	5:52:12	+32:32:48	90.	1.072	5:39:23
+/scratch/M37New/object/B/Nov30108.fits	m37	27:41:50	5:52:30	+32:35:36	600.	1.129	6:10:43
+end showObjProp

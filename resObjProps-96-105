@@ -1,0 +1,18 @@
+start showObjProp
+start R
+object	zenith dist	right asc	decl	exptime	airmass	UT
+/scratch/M37New/object/R/Nov30096.fits	m37	17:34:00	5:52:10	+32:32:46	60.	1.049	5:22:17
+/scratch/M37New/object/R/Nov30097.fits	m37	18:08:23	5:52:12	+32:32:47	30.	1.052	5:25:03
+/scratch/M37New/object/R/Nov30100.fits	m37	19:18:14	5:52:12	+32:32:47	30.	1.059	5:30:36
+/scratch/M37New/object/R/Nov30103.fits	m37	20:28:19	5:52:11	+32:32:48	30.	1.067	5:36:09
+start V
+object	zenith dist	right asc	decl	exptime	airmass	UT
+/scratch/M37New/object/V/Nov30098.fits	m37	18:25:41	5:52:12	+32:32:47	60.	1.054	5:26:26
+/scratch/M37New/object/V/Nov30101.fits	m37	19:35:39	5:52:11	+32:32:47	60.	1.061	5:31:59
+/scratch/M37New/object/V/Nov30104.fits	m37	20:45:15	5:52:12	+32:32:48	60.	1.069	5:37:31
+start B
+object	zenith dist	right asc	decl	exptime	airmass	UT
+/scratch/M37New/object/B/Nov30099.fits	m37	18:49:22	5:52:11	+32:32:47	90.	1.056	5:28:18
+/scratch/M37New/object/B/Nov30102.fits	m37	19:59:11	5:52:11	+32:32:47	90.	1.064	5:33:51
+/scratch/M37New/object/B/Nov30105.fits	m37	21:08:48	5:52:12	+32:32:48	90.	1.072	5:39:23
+end showObjProp
