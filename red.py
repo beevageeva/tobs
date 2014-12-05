@@ -8,12 +8,8 @@ iraf.noao.imred(Stdout=1)
 #iraf.noao.imred.ccdred(Stdout=1)
 iraf.noao.imred.bias(Stdout=1)
 
-IMGDIR = "/scratch/M37/" 
-OUTPUTDIR = "/scratch/M37New/" 
+from configLocal import IMGDIR, OUTPUTDIR, FILTERS
 
-#FILTERS = ["R", "V", "I", "B"]
-#for M37 no I filter
-FILTERS = ["R", "V", "B"]
 BIAS_SEC= "[1025:1056,1:1024]"
 DATA_SEC= "[1:1024,1:1024]"
 
@@ -305,7 +301,11 @@ def createFlatFiles():
 				print("flatFile %s alreday exists deleting"  % flatFile)
 				os.remove(flatFile)
 			iraf.imcombine.setParam("output", flatFile)
-			iraf.imcombine()
+			#from doc:	
+			#http://www.iac.es/sieinvens/siepedia/pmwiki.php?n=HOWTOs.PythonianIRAF
+			#--> iraf.listpix(mode='ql')     # confirms parameter
+			#--> iraf.listpix(mode='h')     # doesn't ask for parameter...@@
+			iraf.imcombine(mode="h")
 			#NORMALIZE
 			#imstat
 			res = iraf.imstat(flatFile, Stdout=1)

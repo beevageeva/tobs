@@ -8,7 +8,7 @@ iraf.noao.imred(Stdout=1)
 
 import matplotlib.pyplot as plt
 
-def displaySt(fitsfile , delta):
+def displaySt(fitsfile , delta, plotImages=False):
 	im = pyfits.getdata(fitsfile)
 	print("shape of im")
 	print(im.shape)	
@@ -84,19 +84,20 @@ def displaySt(fitsfile , delta):
 	for o in obj:
 		mi = o['i'][int(len(o['i'])/2)]
 		mj = o['j'][int(len(o['j'])/2)]
-		print("mi=%d,mj=%d" % (mi,mj))
+		print("mi=%d,mj=%d,i:%s,j:%s" % (mi,mj, ",".join(str(o['i'])), ",".join(str(o['j'])) ))
 		bigv[mi-rMark:mi+rMark, mj-rMark:mj+rMark] = 1
 
-	fig = plt.figure(1)
-	ax1= fig.add_subplot(1, 3, 1)
-	ax2= fig.add_subplot(1, 3, 2)
-	ax3= fig.add_subplot(1, 3, 3)
-	ax1.imshow(bigv, cmap='gray',origin='lower')	
-	ax2.imshow(im, cmap='gray',origin='lower')	
-	ax3.imshow(bigv, cmap='gray',origin='lower')
-	ax3.imshow(im, cmap='gray',origin='lower', alpha=0.5)
-	plt.draw()
-	plt.show(block=True)
+	if(plotImages):
+		fig = plt.figure(1)
+		ax1= fig.add_subplot(1, 3, 1)
+		ax2= fig.add_subplot(1, 3, 2)
+		ax3= fig.add_subplot(1, 3, 3)
+		ax1.imshow(bigv, cmap='gray',origin='lower')	
+		ax2.imshow(im, cmap='gray',origin='lower')	
+		ax3.imshow(bigv, cmap='gray',origin='lower')
+		ax3.imshow(im, cmap='gray',origin='lower', alpha=0.5)
+		plt.draw()
+		plt.show(block=True)
 
 
 delta = float(sys.argv[2])
