@@ -1,0 +1,11 @@
+ecl> imcombine M37New/flat/R/Nov30031.fits,M37New/flat/V/Nov30032.fits M37New/flat/FlatBigExptime
+ecl> imcombine M37New/flat/V/Nov30016.fits,M37New/flat/V/Nov30015.fits M37New/flat/FlatSmallExptime
+ecl> imarith  M37New/flat/FlatBigExptime /  M37New/flat/FlatSmallExptime  M37New/flat/FlatBigSmallDivided
+noao,imred,ccdred
+ecl> ccdmask  M37New/flat/FlatBigSmallDivided  M37New/flat/MaskFile 
+cd M37New/object/V
+fixpix @list /scratch1/tobs/M37New/flat/MaskFile
+cd ../R
+fixpix @list /scratch1/tobs/M37New/flat/MaskFile
+cd ../B
+fixpix @list /scratch1/tobs/M37New/flat/MaskFile

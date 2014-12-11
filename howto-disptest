@@ -1,0 +1,1 @@
+for fn in `ls /scratch/img112/object/V/*.fits`; do python disptest.py /scratch/img112/object/V/$fn ; done

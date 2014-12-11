@@ -1,0 +1,3 @@
+        cl> display.xsize=0.5
+        cl> display image1 fill+ xcen=0.25
+        cl> display image2 erase- fill+ xcen=0.75

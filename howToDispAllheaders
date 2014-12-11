@@ -1,0 +1,1 @@
+find M37New -name '*.fits'  -exec python dispHeader.py {}  \;

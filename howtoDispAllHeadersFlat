@@ -1,0 +1,2 @@
+for i in `find M37New -name 'Nov*.fits' | grep flat`; do echo $i; python dispHeader.py $i ; done
+for i in `find M37New -name 'Nov*.fits' | grep flat`; do echo $i; python dispHeader.py $i | grep EXPTIME; done

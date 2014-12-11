@@ -365,11 +365,11 @@ def flatCorrection():
 #initDirs()
 #IMAGE CORRECTION
 #trimAndOverscan()
-#createFlatFiles()
-#flatCorrection() 
+createFlatFiles()
+flatCorrection() 
 
 #showFlatProp()
-showObjProp()
+#showObjProp()
 
 
 #createBadPixelsMaskFiles()

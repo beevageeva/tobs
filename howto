@@ -1,0 +1,8 @@
+sshfs -o ro bpb@rusia.cca.iac.es:/scratch/TecnicasOb/ imagesRusia
+fusermount -u imagesRusia
+python createLists.py --field=INSFILTE --fitsDir=/scratch1/red/imagenesfits/ --outDir=outLists
+python createLists.py --field=IMAGETYP --fitsDir=/scratch1/red/imagenesfits/ --outDir=outLists
+
+python trimImages2.py
+	using ccdproc instead colbias -- hangs kill -9 not working
+
