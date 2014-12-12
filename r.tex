@@ -265,8 +265,183 @@ En la pagina web:
 \end{description}
 
 
-
 \subsection*{Reducción de las imagenes}
+\begin{itemize}
+\item
+Separar las imagenes en carpetas por tipo: object y flat y cada una por el fitro(B, R, V) (función initDirs() in red.py)
+\item
+Correción bias(sustraer bias de la imagen): con la función colbias de iraf(función trimAndOverscan() in red.py): se calcula una columna como media de las columnas definidas en la sección bias y se sustrae de todas las columnas de la sección trim. Se hace para todas las imagenes: flat y object
+\item 
+Crear los ficheros flat que se usan para la correción de flat:
+con imcombine se hace una media de todas las imaganes flat para cada filtro y despues se normalizan dividiendo por la media(mean) de cada uno (usando la función iraf imarith) (función createFlatFiles() en red.py)
+\item
+Correción de flat:
+Todas las imagenes tipo object se dividen con el flat medio normalizado para cada filtro (función flatCorrection() en red.py)
+\item para la fotometría elegimos solo la parte central del cúmulo (las imagenes que tienen los últimos 3 dígitos antes de la extensión .fits  formando un número $ \in  [96,105] $)
+
+\item corregir pixeles malos (independientes del filtro):
+de forma aproximadamente automática: elegimos 2 flat con tiempo de exposition largo (EXPTIME keyword in header)
+M37New/flat/V/Nov30032.fits (60) y M37New/flat/R/Nov30031.fits (35) y hacemos la media con imcombine
+y 2 con el valor  EXPTIME pequeño: M37New/flat/V/Nov30016.fits (2)  M37New/flat/V/Nov30015.fits (2)
+Luego dividimos los 2 resultados y creamos una mascara con ccdmask. Despues ejecutamos fixpix para lodas las imagenes tipo object y el fichero mask obtenido antes:
+
+\begin{verbatim}
+
+ecl> imcombine M37New/flat/R/Nov30031.fits,M37New/flat/V/Nov30032.fits M37New/flat/FlatBigExptime
+ecl> imcombine M37New/flat/V/Nov30016.fits,M37New/flat/V/Nov30015.fits M37New/flat/FlatSmallExptime
+ecl> imarith  M37New/flat/FlatBigExptime /  M37New/flat/FlatSmallExptime  M37New/flat/FlatBigSmallDivided
+ecl> noao
+ecl> imred
+ecl> ccdred
+ecl> ccdmask  M37New/flat/FlatBigSmallDivided  M37New/flat/MaskFile 
+ecl> cd M37New/object/V
+ecl> fixpix @list /scratch1/tobs/M37New/flat/MaskFile
+ecl> cd ../R
+ecl> fixpix @list /scratch1/tobs/M37New/flat/MaskFile
+ecl> cd ../B
+ecl> fixpix @list /scratch1/tobs/M37New/flat/MaskFile
+
+
+\end{verbatim}
+
+\item Si queremos definir una mascara:
+
+Si miramos en la imagen  Nov30098.fits y queremos definir en la columna 577($ x \in [577,578) $) como pixeles malos la parte de abajo ($ y \in [0, 259) $)
+\begin{verbatim}
+bpopescu@colibri:/scratch1/tobs$ cat col577Mask 
+box 577 0 578 259
+\end{verbatim}
+
+\begin{verbatim}
+ecl> mskregions.regions="col577Mask"
+ecl> mskregions.dims="1024,1024"
+ecl> mskregions.masks="M37New/flat/Col577Mask"
+ecl> mskregions.refimages="M37New/object/V/Nov30098.fits"
+ecl> mskregions
+The list of region specifications (col577Mask): 
+The list of output mask images (M37New/flat/Col577Mask): 
+The list of input reference images (M37New/object/V/Nov30098.fits): 
+Creating mask M37New/flat/Col577Mask.pl using reference image M37New/object/V/Nov30098.fits
+    Using regions file col577Mask
+ecl> 
+\end{verbatim}
+(Si no queremos que nos pregunte siempre por los parametros hay que modificar el parametro mode del task de 'ql' a 'h')
+
+Se crea un fichero /scratch1/tobs/M37New/flat/Col577Mask.pl, no hace falta especificar la extensión .pl en el paso siguiente cuando se pasa como parametro al task fixpix:
+
+Después hay que modificar todas las imagenes tipo object con fixpix como antes
+
+
+\begin{verbatim}
+ecl> cd M37New/object/V
+ecl> fixpix @list /scratch1/tobs/M37New/flat/Col577Mask
+ecl> cd ../R
+ecl> fixpix @list /scratch1/tobs/M37New/flat/Col577Mask
+ecl> cd ../B
+ecl> fixpix @list /scratch1/tobs/M37New/flat/Col577Mask
+\end{verbatim}
+
+Miramos la diferencia entre las imagenes antes de aplicar esta mascara y despues:
+			
+\begin{verbatim}
+
+        cl> display.xsize=0.5
+        cl> display M37New/object/V/Nov30098.fits fill+ xcen=0.25
+        cl> display Nov30098.fits erase- fill+ xcen=0.75
+
+
+\end{verbatim}
+
+\begin{figure}[!ht]
+ \centering
+ \includegraphics[scale=0.5]{fixpix.png}
+ \caption{\emph{Perfil radial de las estrellas de referencia para la alineación}}
+\end{figure}
+
+
+\item
+FOTOMETRIA:
+Alinear las imagenes:
+Se elige una imagen con buena respuesta elegí Nov30098.fits en filtro V y 3 estrellas bien separadas en la imagen que no tengan mucho ruido y que no estén saturadas
+
+\begin{figure}[!ht]
+ \centering
+ \includegraphics[scale=0.2]{align_rp.png}
+ \caption{\emph{Perfil radial de las estrellas de referencia para la alineación}}
+\end{figure}
+
+\begin{verbatim}
+para ver el perfil radial:
+en xgterm abrir el visualizador ds9 (funciona con ximtool, pero no he probado)
+en iraf
+ ecl>display image.fits
+ ecl>imexam image.fits
+hacer click en el punto donde quieres ver el perfil radial y pulsar "r" después
+\end{verbatim}
+
+
+\item  escribir las coordenadas en un fichero
+\begin{verbatim}
+[bpopescu@colibri tobs]$ cat coords-98.txt
+194 872
+831 843
+222 98
+\end{verbatim}
+
+\item Usamos imcentroid para obtener las coordenadas exactas usando como input la misma imagen de referencia
+
+\begin{verbatim}
+
+        ecl> imcentroid.input = "M37New/object/V/Nov30098.fits" 
+	    	ecl> imcentroid.reference = "M37New/object/V/Nov30098.fits" 
+       	ecl> imcentroid.coords = "coords-98.txt"
+				ecl> imcentroid
+
+salen las coordenadas:
+
+#Coords        Image     X-center   Err      Y-center   Err     Num
+/scratch/M37New/object/V/Nov30098.fits     194.519 (0.028)     872.795 (0.024)     1
+/scratch/M37New/object/V/Nov30098.fits     830.926 (0.015)     843.310 (0.010)     2
+/scratch/M37New/object/V/Nov30098.fits     222.031 (0.018)      97.730 (0.019)     3
+
+#Refcoords Reference     X-center   Err      Y-center   Err     Num
+/scratch/M37New/object/V/Nov30098.fits     194.519 (0.028)     872.795 (0.024)     1
+/scratch/M37New/object/V/Nov30098.fits     830.926 (0.015)     843.310 (0.010)     2
+/scratch/M37New/object/V/Nov30098.fits     222.031 (0.018)      97.730 (0.019)     3
+
+#Shifts        Image    X-shift   Err      Y-shift   Err      N      Internal
+/scratch/M37New/object/V/Nov30098.fits      0.000 (0.017)      0.000 (0.015)    3   (0.000,0.000)
+
+miramos los nuevos valores de x-center y y-center y los ponemos en otro fichero:
+
+[bpopescu@colibri tobs]$ cat coords-98-aligned.txt 
+194.519 872.795
+830.926 843.310
+222.031 97.730
+
+
+\end{verbatim}
+
+\item Alinear lodas las imagenes: usando imalign
+Creamos una lista(fichero listCenter) con las imagenes  que hay que alinear(las tipo "object" del centro del cúmulo (con el numero del nombre  de 96 a 105)) y otra a cual añadimos 'a' antes de la extensión (fichero listCenterAligned) con alignImages.py (ejecutando align desde pyraf, sale un error, porque?)
+
+\begin{verbatim}
+ 	ecl>      imalign.input="@listCenter"   
+  ecl>  		imalign.reference = "M37New/object/V/Nov30098.fits" 
+  ecl>     	imalign.coords = "coords-98-aligned.txt" 
+  ecl>    	imalign.output = "@listCenterAligned" 
+  ecl>    	imalign.interp_type = "nearest" 
+	ecl>			imalign
+\end{verbatim}
+
+\item 
+
+
+\end{itemize}
+
+
+
+\subsection*{Observaciones}
 \begin{itemize}
 \item eliminar pixeles malos: ccdmask
 De fornma adicional quiero aplicar otro mask y quiero definir columnas 660 y 678 como columnas malas(para corregir por ejemplo img 65) y uso un fichero mask de forma:
