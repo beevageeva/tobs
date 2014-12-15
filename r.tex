@@ -434,8 +434,138 @@ Creamos una lista(fichero listCenter) con las imagenes  que hay que alinear(las 
 	ecl>			imalign
 \end{verbatim}
 
-\item 
+\item  BUSCAR ESTRELLAS
+display y daoedit para todas las imagenes alineadas de listcenterAligned: por ejemplo M37New/object/R/Nov30103a.fits:
 
+\begin{verbatim}
+
+ecl> noao
+noao> digiphot
+digiphot> daophot
+
+
+daophot> display M37New/object/R/Nov30103a.fits
+frame to be written into (1:16) (2): 
+z1=8.931553 z2=90.34003
+daophot> daoedit M37New/object/R/Nov30103a.fits
+despues con el cursor encima de la estrella (en la ventana ds9) pulsamos 'a' y en la terminal xgterm aparece una linea para cada estrella
+con las columnas :
+# XCENTER YCENTER       SKY SKYSIGMA    FWHM   COUNTS     MAG
+despues de seleccionar varias guardamos la salida en un fichero:
+bpopescu@colibri:/scratch1/tobs$ cat M37New/object/R/Nov30103a.fits-daoedit 
+# XCENTER YCENTER       SKY SKYSIGMA    FWHM   COUNTS     MAG
+   832.83  575.81      43.9     6.99    4.98  54017.2 -11.831
+   418.22  684.58      55.5    12.89    5.05 235331.5 -13.429
+   175.20  652.63      51.5     9.59    5.04 266379.4 -13.564
+    52.98  456.31      40.7     6.49    4.44  58369.4 -11.915
+    89.85  235.86      47.8     9.12    4.97 211897.9 -13.315
+   624.22  843.96      47.2     8.37    5.02 162999.8 -13.030
+   193.41  872.61      39.7     6.35    4.88  64339.4 -12.021
+   273.99  859.73      37.5     6.56    4.97  22932.2 -10.901
+   348.81  133.11      46.2     9.01    5.29 153856.1 -12.968
+   611.49  559.89      47.6     8.17    5.07  58278.2 -11.914
+   912.48  143.12      40.0     6.54    5.62  34869.5 -11.356
+
+Para salir de daoedit pulsamos 'q'
+
+\end{verbatim}
+
+\item El proceso de generar un fichero con las coordenadas de todas las estrellas con daofind y de las magnitudes de las estrellas de cada imagen con la funciónj iraf phot se puede hacer de forma manual: para cada fichero imagen:
+\begin{description}
+
+\item 
+Hay que establecer los siguientes parametros una vez para todas las imagenes 
+
+\begin{verbatim}
+	daophot> datapars.exposure = "EXPTIME"
+	daophot> datapars.airmass = "AIRMASS"
+	daophot> datapars.filter = "INSFILTE"
+	daophot> datapars.ccdread = "RDNOISE"
+	daophot> datapars.gain = "GAIN"
+\end{verbatim}
+\item 
+Hacemos una media de las columnas 4(SKYSIGMA) y 5(FWHM) con
+
+\begin{verbatim}
+python daoeditAvg.py M37New/object/R/Nov30103a.fits-daoedit
+sky sigma mean is 8.19
+FWHMPSF mean is 5.03
+\end{verbatim}
+
+
+
+\item 
+Antes de ejecutar daofind para cada imagen hay que establecer para cada una los parametros FWHM y SKYSIGMA obtenidos con daoedit en el paso anterior
+ 
+\begin{verbatim}
+	daophot> datapars.fwhmpsf = 5.03
+	daophot> datapars.sigma = 8.19
+
+\end{verbatim}
+
+\item Cogemos una media de todos los valores medios fwhm para establecer el valor del parametro apertures que es recomendable no variar entre las imagenes
+
+\begin{verbatim}
+bpopescu@colibri:/scratch1/tobs$ find M37New/ -iname *-daoedit -exec python daoeditAvg.py {} \; | grep FW | cut -d' ' -f4 
+5.91
+5.90
+6.13
+6.01
+5.90
+5.83
+5.36
+5.64
+5.95
+5.97
+\end{verbatim}
+
+\item La media de estos valores es 5.853 y la colocamos en photpars.apertures 17.56 (3 * 5.853)
+Los valores recomendados   de annulus es el valor de apertures + 3 y dannulus 5
+
+\begin{verbatim}
+	daophot> photpars.apertures = 17.56
+	daophot> fitskypars.annulus=20.56
+	daophot> fitskypars.dannulus=5
+
+
+\end{verbatim}
+
+
+\item
+Ejecutamos daofind: 
+\begin{verbatim}
+	daophot> daofind M37New/object/R/Nov30103a.fits  M37New/object/R/Nov30103a.fits-daofind
+\end{verbatim}
+Esto va a crear el fichero M37New/object/R/Nov30103a.fits-daofind con las magnitudes de todas las estrellas encontradas en la imagen
+
+\item Después ejecutamos phot para obtener los ficheros con las magnitudes
+
+\begin{verbatim}
+	daophot> phot M37New/object/R/Nov30103a.fits  coords=M37New/object/R/Nov30103a.fits-daofind output=M37New/object/R/Nov30103a.fits.mag
+\end{verbatim}
+
+
+
+\end{description}
+
+\item Teniendo los ficheros *-daoedit con las coordenadas de algunas estrellas elegidas de forma interactiva como 
+se explicó antes podemos ejecutar 
+
+\begin{verbatim}
+	python daofind.py listCenterAligned
+\end{verbatim}
+que genera los ficheros *-daofind de todas las imagenes alineadas y los ficheros *.mag con las magnitudes
+
+
+
+
+\item Si tenemos la imagen ya cargada en ds9 podemos superponer las coordenadas (el fichero generado por daofind)
+ con tvmark (! el mismo frame) para ver si salen bien
+(si hay estrellas que no se han encontrado hay que reducir el valor del parametro  findpars.threshold (4 por defecto) o ampliarlo si marca estrellas que no son)
+
+\begin{verbatim}
+daophot> tvmark coords=M37New/object/R/Nov30103a.fits-daofind 
+\end{verbatim}
 
 \end{itemize}
 

@@ -1,32 +1,37 @@
-import pyfits, pylab,sys, ds9
-from pyraf import iraf
 import numpy as np
+import sys
+from pyraf import iraf
 
-def displayImage(fitsfile):
+# Initialize IRAF with ccdred
+iraf.noao.digiphot.daophot(Stdout=1)
 
-	#print "imsize %d " % len(im)
-	#d.set_np2arr(im)
-	 
-	# Zoom to fit
-	#d.set('zoom to fit')
-	 
-	# Change the colormap and scaling
-	#d.set('cmap bb')
-	#d.set('scale log')
-	 
-	# Add a label
-	#d.set('regions command {text 30 20 #text="Fun with pyds9" font="times 18 bold"}')
-	 
-	# Now you can play in ds9 to your heart's content.
-	# Check back to see what the current color scale is.
-	#print d.get('scale')
-	 
-	# Finally, save your completed image (including regions or labels)
-	iraf.daofind.setParam("findpars", "findpars.txt")
-	iraf.daofind(fitsfile)
+def daofind(filelist):
+	iraf.datapars.setParam("exposure", "EXPTIME")
+	iraf.datapars.setParam("airmass", "AIRMASS")
+	iraf.datapars.setParam("filter", "INSFILTE")
+	iraf.datapars.setParam("ccdread", "RDNOISE")
+	iraf.datapars.setParam("gain", "GAIN")
+	
+	iraf.centerpars.setParam("calgorithm", "centroid")
+	iraf.photpars.setParam("apertures", "17.56")
+	iraf.fitskypars.setParam("annulus", "20.56")
+	iraf.fitskypars.setParam("dannulus", "5")
+	
 	
 
+	with open(filelist) as file1:
+		for line in file1:
+			filename = line.strip()
+			y,z = np.loadtxt(filename + "-daoedit", usecols=[3,4], unpack=True)
+			sigma = np.mean(y) 
+			fwhm = np.mean(z)
+			iraf.datapars.setParam("fwhmpsf", "%s" % str(fwhm)  )
+			iraf.datapars.setParam("sigma", "%s" % str(sigma)  )
+			iraf.daofind(filename, filename + "-daofind")
+			
+			iraf.phot(filename, coords=(filename + "-daofind"), output=(filename+".mag"))
 
 
-# Now open ds9 (this assumes no ds9 instance is yet running)
-displayImage(sys.argv[1])
+
+daofind(sys.argv[1])	
+
