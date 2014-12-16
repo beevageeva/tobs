@@ -1,0 +1,6 @@
+configLocal.py
+r.log
+r.aux
+r.out
+*.pyc
+imagenesfits/*
