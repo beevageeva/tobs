@@ -7,12 +7,13 @@
 \usepackage{amssymb}
 \usepackage{tikz}
 \usetkzobj{all}
+\usepackage{verbatimbox}
+
 
 \usepackage{geometry}
  \geometry{
  a4paper,
- total={210mm,297mm},
- left=10mm,
+ left=15mm,
  right=10mm,
  top=20mm,
  bottom=20mm,
@@ -297,24 +298,24 @@ M37New/flat/V/Nov30032.fits (60) y M37New/flat/R/Nov30031.fits (35) y hacemos la
 y 2 con el valor  EXPTIME pequeño: M37New/flat/V/Nov30016.fits (2)  M37New/flat/V/Nov30015.fits (2)
 Luego dividimos los 2 resultados y creamos una mascara con ccdmask. Despues ejecutamos fixpix para lodas las imagenes tipo object y el fichero mask obtenido antes:
 
-\begin{verbatim}
+\begin{verbnobox}[\small]
 
 ecl> imcombine M37New/flat/R/Nov30031.fits,M37New/flat/V/Nov30032.fits M37New/flat/FlatBigExptime
 ecl> imcombine M37New/flat/V/Nov30016.fits,M37New/flat/V/Nov30015.fits M37New/flat/FlatSmallExptime
 ecl> imarith  M37New/flat/FlatBigExptime /  M37New/flat/FlatSmallExptime  M37New/flat/FlatBigSmallDivided
 ecl> noao
-ecl> imred
-ecl> ccdred
-ecl> ccdmask  M37New/flat/FlatBigSmallDivided  M37New/flat/MaskFile 
-ecl> cd M37New/object/V
-ecl> fixpix @list /scratch1/tobs/M37New/flat/MaskFile
-ecl> cd ../R
-ecl> fixpix @list /scratch1/tobs/M37New/flat/MaskFile
-ecl> cd ../B
-ecl> fixpix @list /scratch1/tobs/M37New/flat/MaskFile
+noao> imred
+imred> ccdred
+ccdred> ccdmask  M37New/flat/FlatBigSmallDivided  M37New/flat/MaskFile 
+ccdred> cd M37New/object/V
+ccdred> fixpix @list /scratch1/tobs/M37New/flat/MaskFile
+ccdred> cd ../R
+ccdred> fixpix @list /scratch1/tobs/M37New/flat/MaskFile
+ccdred> cd ../B
+ccdred> fixpix @list /scratch1/tobs/M37New/flat/MaskFile
 
 
-\end{verbatim}
+\end{verbnobox}
 
 \item Si queremos definir una mascara:
 
