@@ -5,7 +5,8 @@ from pyraf import iraf
 # Initialize IRAF with ccdred
 iraf.noao.digiphot.daophot(Stdout=1)
 
-def daofind(filelist):
+
+def daofind(filelist, psfimage):
 	iraf.datapars.setParam("exposure", "EXPTIME")
 	iraf.datapars.setParam("airmass", "AIRMASS")
 	iraf.datapars.setParam("filter", "INSFILTE")
@@ -25,7 +26,7 @@ def daofind(filelist):
 
 			iraf.allstar.setParam("image","%s" % filename	)
 			iraf.allstar.setParam("photfile","%s.mag" % filename	)
-			iraf.allstar.setParam("psfimage","/scratch/M37New/object/V/Nov30098a.fits.psf.1.fits"	)
+			iraf.allstar.setParam("psfimage",psfimage	)
 			iraf.allstar.setParam("allstarfile","%s.als"%filename	)
 			iraf.allstar.setParam("rejfile","%s.arj"%filename	)
 			iraf.allstar.setParam("subimage","%s.sub" %filename	)
@@ -36,5 +37,5 @@ def daofind(filelist):
 
 
 
-daofind(sys.argv[1])	
+daofind(sys.argv[1], sys.argv[2])	
 

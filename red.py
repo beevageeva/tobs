@@ -362,14 +362,14 @@ def flatCorrection():
 
 
 #showImageProperties()
-initDirs()
+#initDirs()
 #IMAGE CORRECTION
-trimAndOverscan()
-createFlatFiles()
-flatCorrection() 
+#trimAndOverscan()
+#createFlatFiles()
+#flatCorrection() 
 
 #showFlatProp()
-#showObjProp()
+showObjProp()
 
 
 #createBadPixelsMaskFiles()

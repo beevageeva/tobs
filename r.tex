@@ -374,7 +374,7 @@ Miramos la diferencia entre las imagenes antes de aplicar esta mascara y despues
 
 \item
 FOTOMETRIA:
-Alinear las imagenes:
+\textbf{Alinear las imagenes:}
 Se elige una imagen con buena respuesta elegí Nov30098.fits en filtro V y 3 estrellas bien separadas en la imagen que no tengan mucho ruido y que no estén saturadas
 
 \begin{figure}[!ht]
@@ -405,10 +405,10 @@ hacer click en el punto donde quieres ver el perfil radial y pulsar "r" después
 
 \begin{verbatim}
 
-        ecl> imcentroid.input = "M37New/object/V/Nov30098.fits" 
-	    	ecl> imcentroid.reference = "M37New/object/V/Nov30098.fits" 
-       	ecl> imcentroid.coords = "coords-98.txt"
-				ecl> imcentroid
+ecl> imcentroid.input = "M37New/object/V/Nov30098.fits" 
+ecl> imcentroid.reference = "M37New/object/V/Nov30098.fits" 
+ecl> imcentroid.coords = "coords-98.txt"
+ecl> imcentroid
 
 salen las coordenadas:
 
@@ -436,15 +436,15 @@ miramos los nuevos valores de x-center y y-center y los ponemos en otro fichero:
 \end{verbatim}
 
 \item Alinear lodas las imagenes: usando imalign
-Creamos una lista(fichero listCenter) con las imagenes  que hay que alinear(las tipo "object" del centro del cúmulo (con el numero del nombre  de 96 a 105)) y otra a cual añadimos 'a' antes de la extensión (fichero listCenterAligned) con alignImages.py (ejecutando align desde pyraf, sale un error, porque?)
+Creamos una lista(fichero listCenter-M37) con las imagenes  que hay que alinear(las tipo "object" del centro del cúmulo (con el numero del nombre  de 96 a 105)) y otra a cual añadimos 'a' antes de la extensión (fichero listCenterAligned-M37) con alignImages.py (ejecutando align desde pyraf, sale un error, porque?)
 
 \begin{verbatim}
- 	ecl>      imalign.input="@listCenter"   
-  ecl>  		imalign.reference = "M37New/object/V/Nov30098.fits" 
-  ecl>     	imalign.coords = "coords-98-aligned.txt" 
-  ecl>    	imalign.output = "@listCenterAligned" 
-  ecl>    	imalign.interp_type = "nearest" 
-	ecl>			imalign
+ 	ecl>imalign.input="@listCenter-M37"   
+  ecl>imalign.reference = "M37New/object/V/Nov30098.fits" 
+  ecl>imalign.coords = "coords-98-aligned.txt" 
+  ecl>imalign.output = "@listCenterAligned-M37" 
+  ecl>imalign.interp_type = "nearest" 
+	ecl>imalign
 \end{verbatim}
 
 \item  BUSCAR ESTRELLAS
@@ -519,7 +519,7 @@ Antes de ejecutar daofind para cada imagen hay que establecer para cada una los 
 \item Cogemos una media de todos los valores medios fwhm para establecer el valor del parametro apertures que es recomendable no variar entre las imagenes
 
 \begin{verbatim}
-bpopescu@colibri:/scratch1/tobs$ find M37New/ -iname *-daoedit -exec python daoeditAvg.py {} \; | grep FW | cut -d' ' -f4 
+$ find M37New/ -iname *-daoedit -exec python daoeditAvg.py {} \; | grep FW | cut -d' ' -f4 
 5.91
 5.90
 6.13
@@ -565,7 +565,7 @@ Esto va a crear el fichero M37New/object/R/Nov30103a.fits-daofind con las magnit
 se explicó antes podemos ejecutar 
 
 \begin{verbatim}
-	python daofind.py listCenterAligned
+	python daofind.py listCenterAligned-M37
 \end{verbatim}
 que genera los ficheros *-daofind de todas las imagenes alineadas y los ficheros *.mag con las magnitudes
 
@@ -577,24 +577,101 @@ que genera los ficheros *-daofind de todas las imagenes alineadas y los ficheros
 (si hay estrellas que no se han encontrado hay que reducir el valor del parametro  findpars.threshold (4 por defecto) o ampliarlo si marca estrellas que no son)
 
 \begin{verbatim}
-daophot> tvmark coords=M37New/object/R/Nov30103a.fits-daofind 
+daophot> tvmark coords="M37New/object/R/Nov30103a.fits-daofind"
+\end{verbatim}
+
+\item psf
+
+Cogemos una imagen de referencia (object/V/Nov30098a.fits) establecemos los valores de datapars.fwhmpsf y sigma a los valores correspondientes a esta imagen (como antes: el valor medio obtenido despues de seleccionar un par de estrellas con daoedit en la imagen correspondiente)
+
+\begin{verbatim}
+	daophot>datapars.sigma=11.43
+	daophot>datapars.fwhmpsf=5.83
+\end{verbatim}
+
+Como vamos a usar la misma psf para todas las imagenes para extraer las estrellas después con allstar, cogemos la media de todas las fwhmpsf de todas las imagenes para el valor del parámetro daopars.fitrad(=v) y 3*v+1 para daopars.psfrad
+
+\begin{verbatim}
+	daophot>daopars.fitrad=5.853
+	daophot>daopars.psfrad=18.56
+\end{verbatim}
+
+Ejecutamos psf con la opción interactive = yes , así elegimos despues las estrellas  de cual calcular la psf(tenemos que tener la imagen en ds9 con display y despues ejecutar psf, 
+pulsando 'a' dibuja el perfil radial de la estrella, 
+después pulsando 'a' aceptamos la estrella , con 'd' la rechazamos: 
+la estrella debería tener un perfil radial parecido a una gauss y no debería tener vecinos : los vecinos son las estrellas a una distancia menor de 1.5 * psfrad / scale + 2 * fitrad / scale + 1) 
+
+\begin{verbatim}
+	daophot>psf.image="M37New/object/V/Nov30098a.fits"
+	daophot>psf.photfile="M37New/object/V/Nov30098a.fits.mag"
+	daophot>psf.psfimage="M37New/object/V/Nov30098a.fits.psf"
+	daophot>psf.opstfile="M37New/object/V/Nov30098a.fits.pst"
+	daophot>psf.groupfile="M37New/object/V/Nov30098a.fits.psg"
+	daophot>psf.interactive=yes
+	daophot>psf
+
 \end{verbatim}
 
 
-\item allstar
+
+\item allstar para una imagen en iraf cl
 
 \begin{verbatim}
-	daophot>allstar.image="/scratch/M37New/object/V/Nov30098a.fits"
-	daophot>allstar.photfile="/scratch/M37New/object/V/Nov30098a.fits.mag"
-	daophot>allstar.psfimage="/scratch/M37New/object/V/Nov30098a.fits.psf.1.fits"
-	daophot>allstar.allstarfile="/scratch/M37New/object/V/Nov30098a.fits.als"
-	daophot>allstar.rejfile="/scratch/M37New/object/V/Nov30098a.fits.arj"
-	daophot>allstar.subimage="/scratch/M37New/object/V/Nov30098a.fits.sub"
+	daophot>allstar.image="M37New/object/V/Nov30098a.fits"
+	daophot>allstar.photfile="M37New/object/V/Nov30098a.fits.mag"
+	daophot>allstar.psfimage="M37New/object/V/Nov30098a.fits.psf.fits"
+	daophot>allstar.allstarfile="M37New/object/V/Nov30098a.fits.als"
+	daophot>allstar.rejfile="M37New/object/V/Nov30098a.fits.arj"
+	daophot>allstar.subimage="M37New/object/V/Nov30098a.fits.sub"
 	daophot>datapars.sigma=11.43
 	daophot>datapars.fwhmpsf=5.83
 
 	daophot>allstar
 	
+\end{verbatim}
+
+\item ejecutar allstar para todas las estrellas del centro del cúmulo usando la misma imagen psf
+\begin{verbatim}
+$ python allstar.py listCenterAligned-M37  /scratch1/tobs/M37New/object/V/Nov30098a.fits.psf.fits
+\end{verbatim}
+listCenterAligned-M37  es la lista de todas las imagenes del centro del cúmulo alineadas y el segundo parámetro es la imagen psf obtenida en el paso anterior
+
+\item Para las estrellas de calibración (elegimos de momento  "pg2213", "pg2331", "pg0918", "pg0231" porque phl1027 no está en:
+http://www.cfht.hawaii.edu/ObsInfo/Standards/Landolt/)
+y separamos las imagenes para cada una con 
+
+\begin{verbatim}
+$ python createStdLists.py
+\end{verbatim}
+
+
+como observamos que hay varias imagenes para el mismo objeto tenemos que rehacer todo el proceso de fotometría como en el caso del 
+cúmulo empezando con elegir una imagen de referencia, centrar, alinear , ...
+
+\item 
+elegimos como imagen referencia para pg0231  M37New/object/V/Nov30047.fits y creamos el fichero coords-47.txt
+elegimos como imagen referencia para pg0918  M37New/object/V/Nov30090.fits y creamos el fichero coords-90.txt
+elegimos como imagen referencia para pg2213  M37New/object/V/Nov30055.fits y creamos el fichero coords-55.txt
+elegimos como imagen referencia para pg2331  M37New/object/V/Nov30043.fits y creamos el fichero coords-43.txt
+
+\begin{verbatim}
+ecl>imcentroid input="M37New/object/V/Nov30047.fits" reference="M37New/object/V/Nov30047.fits" coords="coords-47.txt"
+ecl>imcentroid input="M37New/object/V/Nov30090.fits" reference="M37New/object/V/Nov30090.fits" coords="coords-90.txt"
+ecl>imcentroid input="M37New/object/V/Nov30055.fits" reference="M37New/object/V/Nov30055.fits" coords="coords-55.txt"
+ecl>imcentroid input="M37New/object/V/Nov30043.fits" reference="M37New/object/V/Nov30043.fits" coords="coords-43.txt"
+
+\end{verbatim}
+
+
+ejecutamos imalign para alinear todas las imagenes segun la imagen de referencia para cada objeto pg
+\begin{verbatim}
+ecl>imalign.interp_type = "nearest" 
+ecl>imalign input="@listCenter-pg0231" output="@listCenterAligned-pg0231" reference="M37New/object/V/Nov30047.fits" coords="coords-47-aligned.txt"
+ecl>imalign input="@listCenter-pg0918" output="@listCenterAligned-pg0918" reference="M37New/object/V/Nov30090.fits" coords="coords-90-aligned.txt"
+ecl>imalign input="@listCenter-pg2213" output="@listCenterAligned-pg2213" reference="M37New/object/V/Nov30055.fits" coords="coords-55-aligned.txt"
+ecl>imalign input="@listCenter-pg2331" output="@listCenterAligned-pg2331" reference="M37New/object/V/Nov30043.fits" coords="coords-43-aligned.txt"
+
+
 \end{verbatim}
 
 

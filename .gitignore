@@ -1,6 +1,6 @@
 configLocal.py
 listCenter
-listCenterAligned
+listCenterAligned-*
 r.log
 r.aux
 r.out

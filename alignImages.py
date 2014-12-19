@@ -25,8 +25,8 @@ def showObjProp():
 					if(last3>=96 and last3 <=105):
 						newfilename = filename[:-5] + "a" + ".fits"
 						print("Imalign %s to %s " % (filename,newfilename) )
-						os.system("echo %s >> listCenter" % os.path.join(OUTPUTDIR, "object", ft, filename))
-						os.system("echo %s >> listCenterAligned" % os.path.join(OUTPUTDIR, "object", ft, newfilename))
+						os.system("echo %s >> listCenter-M37" % os.path.join(OUTPUTDIR, "object", ft, filename))
+						os.system("echo %s >> listCenterAligned-M37" % os.path.join(OUTPUTDIR, "object", ft, newfilename))
 						#iraf.imalign(filename,"/scratch/M37New/object/V/Nov30098.fits","coords-98-aligned.txt", newfilename)
 						#iraf.imalign.input=filename
 						#iraf.imalign.reference=os.path.join(OUTPUTDIR, "object","V","Nov30098.fits")
