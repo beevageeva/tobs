@@ -1,0 +1,70 @@
+#K IRAF       = NOAO/IRAFV2.16          version    %-23s     
+#K HOST       = colibri                 computer   %-23s     
+#K DATE       = 2015-01-13              yyyy-mm-dd %-23s     
+#K TIME       = 12:18:47                hh:mm:ss   %-23s     
+#K PACKAGE    = daophot                 name       %-23s     
+#K TASK       = allstar                 name       %-23s     
+#K IMAGE      = Nov30098a.fits          imagename  %-23s     
+#K PHOTFILE   = Nov30098a.fits.mag      filename   %-23s     
+#K PSFIMAGE   = Nov30098a.fits.psf.fits imagename  %-23s     
+#K ALLSTARFIL = Nov30098a.fits.als      filename   %-23s     
+#K REJFILE    = Nov30098a.fits.arj      filename   %-23s     
+#K SUBIMAGE   = Nov30098a.fits.sub      imagename  %-23s     
+#K SCALE      = 1.                      units/pix  %-23.7g   
+#K DATAMIN    = INDEF                   counts     %-23.7g   
+#K DATAMAX    = INDEF                   counts     %-23.7g   
+#K GAIN       = 2.                      e-/adu     %-23.7g   
+#K READNOISE  = 5.4                     electrons  %-23.7g   
+#K OTIME      = INDEF                   timeunit   %-23s     
+#K XAIRMASS   = 1.054                   number     %-23.7g   
+#K IFILTER    = V                       filter     %-23s     
+#K RECENTER   = yes                     switch     %-23b     
+#K GRPSKY     = yes                     switch     %-23b     
+#K FITSKY     = no                      switch     %-23b     
+#K PSFMAG     = 17.671                  magnitude  %-23.7g   
+#K PSFRAD     = 11.                     scaleunit  %-23.7g   
+#K FITRAD     = 3.                      scaleunit  %-23.7g   
+#K ANNULUS    = 0.                      scaleunit  %-23.7g   
+#K DANNULUS   = 11.                     scaleunit  %-23.7g   
+#K MAXITER    = 50                      number     %-23d     
+#K MAXGROUP   = 60                      number     %-23d     
+#K FLATERROR  = 0.75                    percentage %-23.7g   
+#K PROFERROR  = 5.                      percentage %-23.7g   
+#K CLIPEXP    = 6                       number     %-23d     
+#K CLIPRANGE  = 2.5                     sigma      %-23.7g   
+#K MERGERAD   = INDEF                   scaleunit  %-23.7g   
+#
+#N ID    XCENTER   YCENTER   MAG         MERR          MSKY           NITER    \
+#U ##    pixels    pixels    magnitudes  magnitudes    counts         ##       \
+#F %-9d  %-10.3f   %-10.3f   %-12.3f     %-14.3f       %-15.7g        %-6d      
+#
+#N         SHARPNESS   CHI         PIER  PERROR                                \
+#U         ##          ##          ##    perrors                               \
+#F         %-23.3f     %-12.3f     %-6d  %-13s                                  
+#
+349      532.997   745.417   INDEF       INDEF         28.44247       0        \
+           INDEF       INDEF       6     Merged                                 
+309      485.835   664.592   INDEF       INDEF         28.12915       0        \
+           INDEF       INDEF       6     Merged                                 
+300      818.098   648.816   INDEF       INDEF         27.66692       0        \
+           INDEF       INDEF       6     Merged                                 
+232      71.514    525.219   INDEF       INDEF         25.57819       0        \
+           INDEF       INDEF       6     Merged                                 
+210      219.627   480.342   INDEF       INDEF         27.78711       0        \
+           INDEF       INDEF       6     Merged                                 
+159      616.920   406.641   INDEF       INDEF         26.83936       0        \
+           INDEF       INDEF       6     Merged                                 
+162      470.024   391.457   INDEF       INDEF         30.15543       0        \
+           INDEF       INDEF       6     Merged                                 
+90       875.569   255.167   INDEF       INDEF         22.81408       0        \
+           INDEF       INDEF       6     Merged                                 
+6        992.262   16.208    INDEF       INDEF         27.14143       0        \
+           INDEF       INDEF       3     Npix_too_few                           
+5        888.268   16.506    INDEF       INDEF         25.18789       0        \
+           INDEF       INDEF       3     Npix_too_few                           
+118      12.919    307.123   INDEF       INDEF         31.63441       0        \
+           INDEF       INDEF       3     Npix_too_few                           
+201      4.643     465.792   INDEF       INDEF         21.77948       0        \
+           INDEF       INDEF       3     Npix_too_few                           
+426      1016.950  907.558   INDEF       INDEF         22.20231       0        \
+           INDEF       INDEF       5     Too_faint                              

@@ -282,6 +282,7 @@ En la pagina web:
 \begin{itemize}
 \item
 Separar las imagenes en carpetas por tipo: object y flat y cada una por el fitro(B, R, V) (función initDirs() in red.py)
+Las nueva carpeta donde se van a poner las imagenes se llama M37New (con eso me refiero mas adelante para especificar la carpeta raiz que contiene todas las carpetas con imagenes clasificadas por tipo y filtro y a veces tiene la ruta absoluta)
 \item
 Correción bias(sustraer bias de la imagen): con la función colbias de iraf(función trimAndOverscan() in red.py): se calcula una columna como media de las columnas definidas en la sección bias y se sustrae de todas las columnas de la sección trim. Se hace para todas las imagenes: flat y object
 \item 
@@ -290,7 +291,6 @@ con imcombine se hace una media de todas las imaganes flat para cada filtro y de
 \item
 Correción de flat:
 Todas las imagenes tipo object se dividen con el flat medio normalizado para cada filtro (función flatCorrection() en red.py)
-\item para la fotometría elegimos solo la parte central del cúmulo (las imagenes que tienen los últimos 3 dígitos antes de la extensión .fits  formando un número $ \in  [96,105] $)
 
 \item corregir pixeles malos (independientes del filtro):
 de forma aproximadamente automática: elegimos 2 flat con tiempo de exposition largo (EXPTIME keyword in header)
@@ -372,10 +372,14 @@ Miramos la diferencia entre las imagenes antes de aplicar esta mascara y despues
 \end{figure}
 
 
+\end{itemize}
+
+\subsection*{Fotometría}
+\begin{itemize}
+\item para la fotometría elegimos solo la parte central del cúmulo (las imagenes que tienen los últimos 3 dígitos antes de la extensión .fits  formando un número $ \in  [96,105] $)
 \item
-FOTOMETRIA:
 \textbf{Alinear las imagenes:}
-Se elige una imagen con buena respuesta elegí Nov30098.fits en filtro V y 3 estrellas bien separadas en la imagen que no tengan mucho ruido y que no estén saturadas
+Se elige una imagen con buena respuesta(del centro del cúnulo): elegí Nov30098.fits en filtro V y 3 estrellas bien separadas en la imagen que no tengan mucho ruido y que no estén saturadas
 
 \begin{figure}[!ht]
  \centering
@@ -436,7 +440,7 @@ miramos los nuevos valores de x-center y y-center y los ponemos en otro fichero:
 \end{verbatim}
 
 \item Alinear lodas las imagenes: usando imalign
-Creamos una lista(fichero listCenter-M37) con las imagenes  que hay que alinear(las tipo "object" del centro del cúmulo (con el numero del nombre  de 96 a 105)) y otra a cual añadimos 'a' antes de la extensión (fichero listCenterAligned-M37) con alignImages.py (ejecutando align desde pyraf, sale un error, porque?)
+Creamos una lista(fichero listCenter-M37) con las imagenes  que hay que alinear(las tipo "object" del centro del cúmulo (con el numero del nombre  de 96 a 105)) y otra a cual añadimos 'a' antes de la extensión (fichero listCenterAligned-M37) con createListAlignObject.py (ejecutando align desde pyraf, sale un error, porque?)
 
 \begin{verbatim}
  	ecl>imalign.input="@listCenter-M37"   
@@ -447,8 +451,8 @@ Creamos una lista(fichero listCenter-M37) con las imagenes  que hay que alinear(
 	ecl>imalign
 \end{verbatim}
 
-\item  BUSCAR ESTRELLAS
-display y daoedit para todas las imagenes alineadas de listcenterAligned: por ejemplo M37New/object/R/Nov30103a.fits:
+\item  \textbf{Buscar estrellas y obtener las magnitudes}
+Para poder tener valores de las medias de sky sigma y fwhm para cada imagenes (que usamo después como parametros de entrada en daofind para que busque de forma automática todas las estrellas de la imagen) cogemos algunas estrellas de referencia de  cada imagen miramos la distribucion radial de la luz = COUNTS(XCENTER, YCENTER, Rmax) de cuales queremos que iraf calcule sky sigma, fwhm y magnitud. Nos interesan sky sigma y fwhm que definen el perfil de intensidad (intenta a ajustarlo a una gaussiana con estos parámetros)
 
 \begin{verbatim}
 
@@ -461,7 +465,7 @@ daophot> display M37New/object/R/Nov30103a.fits
 frame to be written into (1:16) (2): 
 z1=8.931553 z2=90.34003
 daophot> daoedit M37New/object/R/Nov30103a.fits
-despues con el cursor encima de la estrella (en la ventana ds9) pulsamos 'a' y en la terminal xgterm aparece una linea para cada estrella
+despues con el cursor encima de la estrella (en la ventana ds9)(las coordenadas donde está el cursor posicionado son XCENTER y YCENTER) pulsamos 'a' y en la terminal xgterm aparece una linea para cada estrella
 con las columnas :
 # XCENTER YCENTER       SKY SKYSIGMA    FWHM   COUNTS     MAG
 despues de seleccionar varias guardamos la salida en un fichero:
@@ -483,8 +487,15 @@ Para salir de daoedit pulsamos 'q'
 
 \end{verbatim}
 
-\item El proceso de generar un fichero con las coordenadas de todas las estrellas con daofind y de las magnitudes de las estrellas de cada imagen con la funciónj iraf phot se puede hacer de forma manual: para cada fichero imagen:
-\begin{description}
+\item 
+Para hacer una media de las columnas 4(SKYSIGMA) y 5(FWHM) de cada fichero daoedit podemos ejecutar:
+
+\begin{verbatim}
+python daoeditAvg.py M37New/object/R/Nov30103a.fits-daoedit
+sky sigma mean is 8.19
+FWHMPSF mean is 5.03
+
+\end{verbatim}
 
 \item 
 Hay que establecer los siguientes parametros una vez para todas las imagenes 
@@ -496,15 +507,6 @@ Hay que establecer los siguientes parametros una vez para todas las imagenes
 	daophot> datapars.ccdread = "RDNOISE"
 	daophot> datapars.gain = "GAIN"
 \end{verbatim}
-\item 
-Hacemos una media de las columnas 4(SKYSIGMA) y 5(FWHM) con
-
-\begin{verbatim}
-python daoeditAvg.py M37New/object/R/Nov30103a.fits-daoedit
-sky sigma mean is 8.19
-FWHMPSF mean is 5.03
-\end{verbatim}
-
 
 
 \item 
@@ -515,6 +517,18 @@ Antes de ejecutar daofind para cada imagen hay que establecer para cada una los 
 	daophot> datapars.sigma = 8.19
 
 \end{verbatim}
+
+
+\item
+Ejecutamos daofind (busca for maximos locales por encima de un valor configurable a través del parámetro  findpars.threshold) calcula el perfil de intensidad y los escribe en un fichero. XCENTER y YCENTER se ajustan para cuadrar con el perfil de intensidad definidos por los parametros datapars.fwhmpsf y datapars.sigma   
+\begin{verbatim}
+	daophot> daofind M37New/object/R/Nov30103a.fits  M37New/object/R/Nov30103a.fits-daofind
+\end{verbatim}
+
+\item Esto va a crear el fichero M37New/object/R/Nov30103a.fits-daofind que son entrada para la funcion phot que calcula las magnitudes teniendo en cuenta también los parámetros que especifican la apertura: photpars y fitskypars que se especifican una vez para todas las imagenes de la forma siguiente:
+
+\begin{description}
+\item \textbf{Aperture photometry}
 
 \item Cogemos una media de todos los valores medios fwhm para establecer el valor del parametro apertures que es recomendable no variar entre las imagenes
 
@@ -543,26 +557,19 @@ Los valores recomendados   de annulus es el valor de apertures + 3 y dannulus 5
 
 \end{verbatim}
 
-
-\item
-Ejecutamos daofind: 
-\begin{verbatim}
-	daophot> daofind M37New/object/R/Nov30103a.fits  M37New/object/R/Nov30103a.fits-daofind
-\end{verbatim}
-Esto va a crear el fichero M37New/object/R/Nov30103a.fits-daofind con las magnitudes de todas las estrellas encontradas en la imagen
-
-\item Después ejecutamos phot para obtener los ficheros con las magnitudes
-
+\end{description}
+\item Ejecutamos phot para cada imagen (teniendo los parametros datapars.fwhmpsf y datapars.sigma establecidos con el valor correspondiente)
+\begingroup
+    \fontsize{10pt}{12pt}\selectfont
 \begin{verbatim}
 	daophot> phot M37New/object/R/Nov30103a.fits  coords=M37New/object/R/Nov30103a.fits-daofind output=M37New/object/R/Nov30103a.fits.mag
 \end{verbatim}
+\endgroup
 
 
 
-\end{description}
 
-\item Teniendo los ficheros *-daoedit con las coordenadas de algunas estrellas elegidas de forma interactiva como 
-se explicó antes podemos ejecutar 
+\item Los pasos anteriores (buscar estrellas y obtener magnitudes)se hacen de forma automática :
 
 \begin{verbatim}
 	python daofind.py listCenterAligned-M37
@@ -580,9 +587,9 @@ que genera los ficheros *-daofind de todas las imagenes alineadas y los ficheros
 daophot> tvmark coords="M37New/object/R/Nov30103a.fits-daofind"
 \end{verbatim}
 
-\item psf
+\item \textbf{Obtenener la imagen PSF}
 
-Cogemos una imagen de referencia (object/V/Nov30098a.fits) establecemos los valores de datapars.fwhmpsf y sigma a los valores correspondientes a esta imagen (como antes: el valor medio obtenido despues de seleccionar un par de estrellas con daoedit en la imagen correspondiente)
+Cogemos una imagen de referencia (yo elegía la misma que he ulizado para alinear: M37New/object/V/Nov30098a.fits pero no creo que tiene que ser la misma) establecemos los valores de datapars.fwhmpsf y sigma a los valores correspondientes a esta imagen (como antes: el valor medio obtenido despues de seleccionar un par de estrellas con daoedit en la imagen correspondiente)
 
 \begin{verbatim}
 	daophot>datapars.sigma=11.43
@@ -614,7 +621,8 @@ la estrella debería tener un perfil radial parecido a una gauss y no debería t
 
 
 
-\item allstar para una imagen en iraf cl
+\item Para todas las imagenes ejecutamos allstar como se describe en el siguiente paso para la imagen que elegí como referencia:
+(usamos la misma psf para todas las imagenes, pero cambiamos sigma y fwhmpsf con los valores medios correspondiente para cada imagen)
 
 \begin{verbatim}
 	daophot>allstar.image="M37New/object/V/Nov30098a.fits"
@@ -630,7 +638,7 @@ la estrella debería tener un perfil radial parecido a una gauss y no debería t
 	
 \end{verbatim}
 
-\item ejecutar allstar para todas las estrellas del centro del cúmulo usando la misma imagen psf
+\item Automatización para todas las imagenes:
 \begin{verbatim}
 $ python allstar.py listCenterAligned-M37  /scratch1/tobs/M37New/object/V/Nov30098a.fits.psf.fits
 \end{verbatim}
@@ -647,40 +655,81 @@ $ python createStdLists.py
 
 como observamos que hay varias imagenes para el mismo objeto tenemos que rehacer todo el proceso de fotometría como en el caso del 
 cúmulo empezando con elegir una imagen de referencia, centrar, alinear , ...
-
+Vemos que para pg0231 y pg2213 se tomaron 2 turnos de fotos en cada filtro - las imagenes están un poco desplazadas (aunque  DEC y RA no cambia mucho - de la magnitud que en el caso de las imagenes del cúmulo hay que tratarlas diferente porque siendo unas estrellas estándar - que se usan para la calibración - están mucho mas cerca que el cúmulo y las diferencias se notan mas y luego las coordenadas de las estrellas no cuadran)
 \item 
 elegimos como imagen referencia para pg0231  M37New/object/V/Nov30047.fits y creamos el fichero coords-47.txt
+elegimos como imagen referencia para pg0231-2  M37New/object/V/Nov30094.fits y creamos el fichero coords-94.txt
 elegimos como imagen referencia para pg0918  M37New/object/V/Nov30090.fits y creamos el fichero coords-90.txt
 elegimos como imagen referencia para pg2213  M37New/object/V/Nov30055.fits y creamos el fichero coords-55.txt
+elegimos como imagen referencia para pg2213-2  M37New/object/V/Nov30039.fits y creamos el fichero coords-39.txt
 elegimos como imagen referencia para pg2331  M37New/object/V/Nov30043.fits y creamos el fichero coords-43.txt
 
+{\tiny 
 \begin{verbatim}
 ecl>imcentroid input="M37New/object/V/Nov30047.fits" reference="M37New/object/V/Nov30047.fits" coords="coords-47.txt"
+ecl>imcentroid input="M37New/object/V/Nov30094.fits" reference="M37New/object/V/Nov30090.fits" coords="coords-94.txt"
 ecl>imcentroid input="M37New/object/V/Nov30090.fits" reference="M37New/object/V/Nov30090.fits" coords="coords-90.txt"
 ecl>imcentroid input="M37New/object/V/Nov30055.fits" reference="M37New/object/V/Nov30055.fits" coords="coords-55.txt"
+ecl>imcentroid input="M37New/object/V/Nov30039.fits" reference="M37New/object/V/Nov30055.fits" coords="coords-39.txt"
 ecl>imcentroid input="M37New/object/V/Nov30043.fits" reference="M37New/object/V/Nov30043.fits" coords="coords-43.txt"
 
 \end{verbatim}
+}
+
+\item 
+
+para alinear las imagenes primero creamos las listas de las imagenes para cada uno:
+
+\begin{verbatim}
+python createListAlignObject.py --objectName=pg0231
+python createListAlignObject.py --objectName=pg0918
+python createListAlignObject.py --objectName=pg2213
+python createListAlignObject.py --objectName=pg2331
+
+\end{verbatim}
+Antes de ejecutar imalign observamos por ejemplo que en las imagenes para pg0231 de han hecho 2
+ejecutamos imalign
 
 
-ejecutamos imalign para alinear todas las imagenes segun la imagen de referencia para cada objeto pg
+{\tiny 
 \begin{verbatim}
 ecl>imalign.interp_type = "nearest" 
 ecl>imalign input="@listCenter-pg0231" output="@listCenterAligned-pg0231" reference="M37New/object/V/Nov30047.fits" coords="coords-47-aligned.txt"
+ecl>imalign input="@listCenter-pg0231_2" output="@listCenterAligned-pg0231_2" reference="M37New/object/V/Nov30094.fits" coords="coords-94-aligned.txt"
 ecl>imalign input="@listCenter-pg0918" output="@listCenterAligned-pg0918" reference="M37New/object/V/Nov30090.fits" coords="coords-90-aligned.txt"
 ecl>imalign input="@listCenter-pg2213" output="@listCenterAligned-pg2213" reference="M37New/object/V/Nov30055.fits" coords="coords-55-aligned.txt"
+ecl>imalign input="@listCenter-pg2213_2" output="@listCenterAligned-pg2213_2" reference="M37New/object/V/Nov30039.fits" coords="coords-39-aligned.txt"
 ecl>imalign input="@listCenter-pg2331" output="@listCenterAligned-pg2331" reference="M37New/object/V/Nov30043.fits" coords="coords-43-aligned.txt"
 
 
 \end{verbatim}
+}
 
+\item python readAlsFiles.py --listFiles=listCenterAligned-M37
+\item python makeCharts.py --listFiles=listCenterAligned-M37
 
+ python makeCharts.py --listFiles=listCenterAligned-pg0231 --exclude=0,9
+python createMontage.py m37
 \end{itemize}
 
 
 
 \subsection*{Observaciones}
 \begin{itemize}
+\item Instalacion en portátil: Fedora 20, iraf y ds9 de la página web, display no funciona
+
+\begin{verbatim}
+ERROR: Cannot open device (node!imtool,,512,512)
+\end{verbatim}
+Comprobar 
+\begin{verbatim}
+netstat -anp| grep ds9
+\end{verbatim}
+inet sockets! set before ecl:
+\begin{verbatim}
+export IMTDEV=inet:5137
+\end{verbatim}
+
 \item eliminar pixeles malos: ccdmask
 De fornma adicional quiero aplicar otro mask y quiero definir columnas 660 y 678 como columnas malas(para corregir por ejemplo img 65) y uso un fichero mask de forma:
 \begin{verbatim}

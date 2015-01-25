@@ -1,0 +1,64 @@
+#K IRAF       = NOAO/IRAFV2.16          version    %-23s     
+#K USER       = bpopescu                name       %-23s     
+#K HOST       = colibri                 computer   %-23s     
+#K DATE       = 2014-12-17              yyyy-mm-dd %-23s     
+#K TIME       = 11:01:42                hh:mm:ss   %-23s     
+#K PACKAGE    = daophot                 name       %-23s     
+#K TASK       = nstar                   name       %-23s     
+#K IMAGE      = Nov30098a.fits          imagename  %-23s     
+#K GRPFILE    = Nov30098a.fits.psg.1    filename   %-23s     
+#K PSFIMAGE   = Nov30098a.fits.psf.1.fi imagename  %-23s     
+#K NSTARFILE  = Nov30098a.fits.nst      filename   %-23s     
+#K REJFILE    = Nov30098a.fits.nrj      filename   %-23s     
+#K SCALE      = 1.                      units/pix  %-23.7g   
+#K DATAMIN    = INDEF                   counts     %-23.7g   
+#K DATAMAX    = INDEF                   counts     %-23.7g   
+#K GAIN       = 1.                      number     %-23.7g   
+#K READNOISE  = 0.                      electrons  %-23.7g   
+#K OTIME      = INDEF                   timeunit   %-23s     
+#K XAIRMASS   = INDEF                   number     %-23.7g   
+#K IFILTER    = INDEF                   filter     %-23s     
+#K RECENTER   = yes                     switch     %-23b     
+#K FITSKY     = no                      switch     %-23b     
+#K GRPSKY     = yes                     switch     %-23b     
+#K PSFMAG     = 18.456                  magnitude  %-23.7g   
+#K PSFRAD     = 11.                     scaleunit  %-23.7g   
+#K FITRAD     = 3.                      scaleunit  %-23.7g   
+#K MAXITER    = 50                      number     %-23d     
+#K MAXGROUP   = 60                      number     %-23d     
+#K FLATERROR  = 0.75                    percentage %-23.7g   
+#K PROFERROR  = 5.                      percentage %-23.7g   
+#K CLIPEXP    = 6                       number     %-23d     
+#K CLIPRANGE  = 2.5                     sigma      %-23.7g   
+#K MERGERAD   = INDEF                   scaleunit  %-23.7g   
+#
+#N ID    GROUP XCENTER   YCENTER   MAG         MERR          MSKY              \
+#U ##    ##    pixels    pixels    magnitudes  magnitudes    counts            \
+#F %-9d  %-6d  %-10.3f   %-10.3f   %-12.3f     %-14.3f       %-15.7g            
+#
+#N         NITER SHARPNESS   CHI         PIER  PERROR                          \
+#U         ##    ##          ##          ##    perrors                         \
+#F         %-17d %-12.3f     %-12.3f     %-6d  %-13s                            
+#
+316      1     506.576   676.849   18.464      0.030         27.19575          \
+           4     -0.023      1.875       0     No_error                         
+321      2     353.421   688.389   18.113      0.016         22.00695          \
+           5     -0.007      1.196       0     No_error                         
+53       3     203.188   168.052   16.895      0.009         22.02497          \
+           6     -0.004      1.130       0     No_error                         
+192      4     52.912    456.427   16.209      0.008         22.49015          \
+           5     -0.000      1.315       0     No_error                         
+35       5     121.613   87.786    17.694      0.016         21.62424          \
+           4     0.004       1.490       0     No_error                         
+381      6     99.671    805.945   18.508      0.016         20.58571          \
+           4     0.004       0.961       0     No_error                         
+291      7     637.335   627.528   18.685      0.022         23.33582          \
+           5     -0.010      1.218       0     No_error                         
+166      8     65.844    410.741   18.120      0.016         21.28708          \
+           5     -0.006      1.097       0     No_error                         
+60       9     963.936   193.937   18.700      0.023         22.85873          \
+           6     -0.011      1.229       0     No_error                         
+59       9     948.439   190.774   18.656      0.029         23.58162          \
+           6     0.007       1.633       0     No_error                         
+182      10    390.276   440.010   17.567      0.014         25.22959          \
+           5     -0.001      1.354       0     No_error                         

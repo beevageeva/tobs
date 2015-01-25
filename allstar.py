@@ -12,7 +12,8 @@ def daofind(filelist, psfimage):
 	iraf.datapars.setParam("filter", "INSFILTE")
 	iraf.datapars.setParam("ccdread", "RDNOISE")
 	iraf.datapars.setParam("gain", "GAIN")
-	
+	iraf.daopars.setParam("fitrad", "5.853")
+	iraf.daopars.setParam("psfrad", "18.56")
 	
 
 	with open(filelist) as file1:

@@ -1,0 +1,55 @@
+#K IRAF       = NOAO/IRAFV2.16.1        version    %-23s     
+#K USER       = beatrice                name       %-23s     
+#K HOST       = localhost.localdomain   computer   %-23s     
+#K DATE       = 2015-01-25              yyyy-mm-dd %-23s     
+#K TIME       = 13:48:05                hh:mm:ss   %-23s     
+#K PACKAGE    = apphot                  name       %-23s     
+#K TASK       = daofind                 name       %-23s     
+#
+#K SCALE      = 1.                      units      %-23.7g   
+#K FWHMPSF    = 5.27                    scaleunit  %-23.7g   
+#K EMISSION   = yes                     switch     %-23b     
+#K DATAMIN    = INDEF                   counts     %-23.7g   
+#K DATAMAX    = INDEF                   counts     %-23.7g   
+#K EXPOSURE   = EXPTIME                 keyword    %-23s     
+#K AIRMASS    = AIRMASS                 keyword    %-23s     
+#K FILTER     = INSFILTE                keyword    %-23s     
+#K OBSTIME    = ""                      keyword    %-23s     
+#
+#K NOISE      = poisson                 model      %-23s     
+#K SIGMA      = 11.89167                counts     %-23.7g   
+#K GAIN       = GAIN                    keyword    %-23s     
+#K EPADU      = 2.                      e-/adu     %-23.7g   
+#K CCDREAD    = RDNOISE                 keyword    %-23s     
+#K READNOISE  = 5.4                     e-         %-23.7g   
+#
+#K IMAGE      = Nov30045a.fits          imagename  %-23s     
+#K FWHMPSF    = 5.27                    scaleunit  %-23.7g   
+#K THRESHOLD  = 4.                      sigma      %-23.7g   
+#K NSIGMA     = 1.5                     sigma      %-23.7g   
+#K RATIO      = 1.                      number     %-23.7g   
+#K THETA      = 0.                      degrees    %-23.7g   
+#
+#K SHARPLO    = 0.2                     number     %-23.7g   
+#K SHARPHI    = 1.                      number     %-23.7g   
+#K ROUNDLO    = -1.                     number     %-23.7g   
+#K ROUNDHI    = 1.                      number     %-23.7g   
+#
+#N XCENTER   YCENTER   MAG      SHARPNESS   SROUND      GROUND      ID         \
+#U pixels    pixels    #        #           #           #           #          \
+#F %-13.3f   %-10.3f   %-9.3f   %-12.3f     %-12.3f     %-12.3f     %-6d       \
+#
+   81.591    264.396   -3.727   0.408       0.104       0.055       1     
+   747.964   348.764   -3.306   0.378       0.139       -0.164      2     
+   570.983   390.191   -3.483   0.396       0.022       -0.281      3     
+   317.479   500.555   -0.765   0.500       -0.131      -0.002      4     
+   759.780   598.548   -1.048   0.530       0.115       -0.309      5     
+   101.878   618.502   -1.528   0.371       0.142       -0.137      6     
+   362.866   646.198   -4.672   0.422       0.045       -0.080      7     
+   174.384   664.210   -3.276   0.367       -0.015      -0.147      8     
+   401.544   847.328   -2.271   0.901       0.035       -0.140      9     
+   429.423   867.524   -3.113   0.312       0.321       -0.175      10    
+   571.140   937.880   -2.754   0.349       0.066       -0.155      11    
+   612.248   944.206   -3.771   0.761       0.904       -0.118      12    
+   948.701   961.868   -0.910   0.326       0.118       -0.357      13    
+   436.920   988.537   -1.851   0.401       0.047       -0.066      14    

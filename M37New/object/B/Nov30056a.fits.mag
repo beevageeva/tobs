@@ -1,0 +1,275 @@
+#K IRAF       = NOAO/IRAFV2.16.1        version    %-23s     
+#K USER       = beatrice                name       %-23s     
+#K HOST       = localhost.localdomain   computer   %-23s     
+#K DATE       = 2015-01-25              yyyy-mm-dd %-23s     
+#K TIME       = 13:49:09                hh:mm:ss   %-23s     
+#K PACKAGE    = apphot                  name       %-23s     
+#K TASK       = phot                    name       %-23s     
+#
+#K SCALE      = 1.                      units      %-23.7g   
+#K FWHMPSF    = 6.19                    scaleunit  %-23.7g   
+#K EMISSION   = yes                     switch     %-23b     
+#K DATAMIN    = INDEF                   counts     %-23.7g   
+#K DATAMAX    = INDEF                   counts     %-23.7g   
+#K EXPOSURE   = EXPTIME                 keyword    %-23s     
+#K AIRMASS    = AIRMASS                 keyword    %-23s     
+#K FILTER     = INSFILTE                keyword    %-23s     
+#K OBSTIME    = ""                      keyword    %-23s     
+#
+#K NOISE      = poisson                 model      %-23s     
+#K SIGMA      = 7.915                   counts     %-23.7g   
+#K GAIN       = GAIN                    keyword    %-23s     
+#K EPADU      = 2.                      e-/adu     %-23.7g   
+#K CCDREAD    = RDNOISE                 keyword    %-23s     
+#K READNOISE  = 5.4                     e-         %-23.7g   
+#
+#K CALGORITHM = centroid                algorithm  %-23s     
+#K CBOXWIDTH  = 5.                      scaleunit  %-23.7g   
+#K CTHRESHOLD = 0.                      sigma      %-23.7g   
+#K MINSNRATIO = 1.                      number     %-23.7g   
+#K CMAXITER   = 10                      number     %-23d     
+#K MAXSHIFT   = 1.                      scaleunit  %-23.7g   
+#K CLEAN      = no                      switch     %-23b     
+#K RCLEAN     = 1.                      scaleunit  %-23.7g   
+#K RCLIP      = 2.                      scaleunit  %-23.7g   
+#K KCLEAN     = 3.                      sigma      %-23.7g   
+#
+#K SALGORITHM = mode                    algorithm  %-23s     
+#K ANNULUS    = 20.56                   scaleunit  %-23.7g   
+#K DANNULUS   = 5.                      scaleunit  %-23.7g   
+#K SKYVALUE   = 0.                      counts     %-23.7g   
+#K KHIST      = 3.                      sigma      %-23.7g   
+#K BINSIZE    = 0.1                     sigma      %-23.7g   
+#K SMOOTH     = no                      switch     %-23b     
+#K SMAXITER   = 10                      number     %-23d     
+#K SLOCLIP    = 0.                      percent    %-23.7g   
+#K SHICLIP    = 0.                      percent    %-23.7g   
+#K SNREJECT   = 50                      number     %-23d     
+#K SLOREJECT  = 3.                      sigma      %-23.7g   
+#K SHIREJECT  = 3.                      sigma      %-23.7g   
+#K RGROW      = 0.                      scaleunit  %-23.7g   
+#
+#K WEIGHTING  = constant                model      %-23s     
+#K APERTURES  = 17.56                   scaleunit  %-23s     
+#K ZMAG       = 25.                     zeropoint  %-23.7g   
+#
+#N IMAGE               XINIT     YINIT     ID    COORDS                 LID    \
+#U imagename           pixels    pixels    ##    filename               ##     \
+#F %-23s               %-10.3f   %-10.3f   %-6d  %-23s                  %-6d    
+#
+#N XCENTER    YCENTER    XSHIFT  YSHIFT  XERR    YERR            CIER CERROR   \
+#U pixels     pixels     pixels  pixels  pixels  pixels          ##   cerrors  \
+#F %-14.3f    %-11.3f    %-8.3f  %-8.3f  %-8.3f  %-15.3f         %-5d %-9s      
+#
+#N MSKY           STDEV          SSKEW          NSKY   NSREJ     SIER SERROR   \
+#U counts         counts         counts         npix   npix      ##   serrors  \
+#F %-18.7g        %-15.7g        %-15.7g        %-7d   %-9d      %-5d %-9s      
+#
+#N ITIME          XAIRMASS       IFILTER                OTIME                  \
+#U timeunit       number         name                   timeunit               \
+#F %-18.7g        %-15.7g        %-23s                  %-23s                   
+#
+#N RAPERT   SUM           AREA       FLUX          MAG    MERR   PIER PERROR   \
+#U scale    counts        pixels     counts        mag    mag    ##   perrors  \
+#F %-12.2f  %-14.7g       %-11.7g    %-14.7g       %-7.3f %-6.3f %-5d %-9s      
+#
+Nov30056a.fits         142.208   3.821     1     Nov30056a.fits-daofind 1      \
+   142.840    3.440      0.632   -0.381  0.025   0.033          0    NoError   \
+   82.40477       7.21767        1.429549       389    1        0    NoError   \
+   300.           1.471          B                      INDEF                  \
+   17.56    0.            0.         0.            INDEF  INDEF 301  OffImage   
+Nov30056a.fits         952.020   15.353    2     Nov30056a.fits-daofind 2      \
+   952.194    15.222     0.174   -0.131  0.018   0.022          0    NoError   \
+   79.6879        7.393883       -2.156549      518    4        0    NoError   \
+   300.           1.471          B                      INDEF                  \
+   17.56    0.            0.         0.            INDEF  INDEF 301  OffImage   
+Nov30056a.fits         453.480   26.044    3     Nov30056a.fits-daofind 3      \
+   453.443    26.076     -0.037  0.032   0.010   0.012          0    NoError   \
+   83.13282       7.304756       1.478152       721    4        0    NoError   \
+   300.           1.471          B                      INDEF                  \
+   17.56    146832.5      968.4693   66320.86      19.139 0.006 0    NoError    
+Nov30056a.fits         409.183   28.211    4     Nov30056a.fits-daofind 4      \
+   409.103    28.060     -0.080  -0.151  0.014   0.012          0    NoError   \
+   83.02879       7.462044       -3.917671      722    2        0    NoError   \
+   300.           1.471          B                      INDEF                  \
+   17.56    129447.2      969.5565   48946.14      19.469 0.009 0    NoError    
+Nov30056a.fits         56.767    55.979    5     Nov30056a.fits-daofind 5      \
+   57.145     55.750     0.378   -0.229  0.068   0.070          0    NoError   \
+   83.73328       7.425013       -1.41756       725    2        0    NoError   \
+   300.           1.471          B                      INDEF                  \
+   17.56    81885.5       968.8781   758.1589      23.993 0.507 0    NoError    
+Nov30056a.fits         745.567   61.392    6     Nov30056a.fits-daofind 6      \
+   745.488    61.304     -0.079  -0.088  0.004   0.005          0    NoError   \
+   83.41182       7.483003       -3.798675      723    3        0    NoError   \
+   300.           1.471          B                      INDEF                  \
+   17.56    261874.1      969.1587   181034.8      18.048 0.003 0    NoError    
+Nov30056a.fits         162.065   98.034    7     Nov30056a.fits-daofind 7      \
+   163.000    98.129     0.935   0.095   0.000   0.007          0    NoError   \
+   82.5761        7.288282       -1.79282       724    2        0    NoError   \
+   300.           1.471          B                      INDEF                  \
+   17.56    85761.57      969.539    5700.824      21.803 0.067 0    NoError    
+Nov30056a.fits         579.001   167.658   8     Nov30056a.fits-daofind 8      \
+   578.776    167.660    -0.225  0.002   0.029   0.059          0    NoError   \
+   80.74602       6.564073       -2.889666      718    8        0    NoError   \
+   300.           1.471          B                      INDEF                  \
+   17.56    81217.95      969.0114   2974.136      22.509 0.115 0    NoError    
+Nov30056a.fits         86.037    240.039   9     Nov30056a.fits-daofind 9      \
+   86.578     239.928    0.541   -0.111  0.051   0.098          0    NoError   \
+   84.58591       7.114121       1.317268       720    4        0    NoError   \
+   300.           1.471          B                      INDEF                  \
+   17.56    82270.11      968.4442   353.3636      24.822 1.042 0    NoError    
+Nov30056a.fits         141.023   242.196   10    Nov30056a.fits-daofind 10     \
+   141.280    241.946    0.257   -0.250  0.028   0.031          0    NoError   \
+   83.00162       7.320475       -3.506667      717    3        0    NoError   \
+   300.           1.471          B                      INDEF                  \
+   17.56    83687.87      968.7723   3278.199      22.404 0.116 0    NoError    
+Nov30056a.fits         676.321   289.123   11    Nov30056a.fits-daofind 11     \
+   676.283    288.304    -0.038  -0.819  0.037   0.103          0    NoError   \
+   80.68936       7.551237       -2.304012      724    2        0    NoError   \
+   300.           1.471          B                      INDEF                  \
+   17.56    79204.47      969.1561   1003.888      23.689 0.390 0    NoError    
+Nov30056a.fits         2.337     310.283   12    Nov30056a.fits-daofind 12     \
+   2.337      310.417    0.000   0.134   INDEF   0.076          102  EdgeImage \
+   85.13661       7.619811       -1.737125      381    2        0    NoError   \
+   300.           1.471          B                      INDEF                  \
+   17.56    0.            0.         0.            INDEF  INDEF 301  OffImage   
+Nov30056a.fits         807.716   327.863   13    Nov30056a.fits-daofind 13     \
+   808.028    327.771    0.312   -0.092  0.029   0.030          0    NoError   \
+   79.51794       7.158909       -3.140315      716    7        0    NoError   \
+   300.           1.471          B                      INDEF                  \
+   17.56    85217.42      969.0653   8159.346      21.414 0.046 0    NoError    
+Nov30056a.fits         74.458    335.402   14    Nov30056a.fits-daofind 14     \
+   74.476     335.214    0.018   -0.188  0.001   0.001          0    NoError   \
+   116.2617       15.42942       11.07907       679    43       0    NoError   \
+   300.           1.471          B                      INDEF                  \
+   17.56    3333971.      968.9752   3221316.      14.923 0.000 0    NoError    
+Nov30056a.fits         341.584   347.105   15    Nov30056a.fits-daofind 15     \
+   341.781    346.183    0.197   -0.922  0.044   0.032          0    NoError   \
+   81.5808        7.492597       4.24622        719    5        0    NoError   \
+   300.           1.471          B                      INDEF                  \
+   17.56    78940.44      968.9418   -106.6057     INDEF  INDEF 0    NoError    
+Nov30056a.fits         607.733   359.924   16    Nov30056a.fits-daofind 16     \
+   607.240    359.512    -0.493  -0.412  0.039   0.069          0    NoError   \
+   80.11755       7.263494       3.851584       721    4        0    NoError   \
+   300.           1.471          B                      INDEF                  \
+   17.56    78580.83      969.014    945.8019      23.753 0.398 0    NoError    
+Nov30056a.fits         226.458   375.034   17    Nov30056a.fits-daofind 17     \
+   226.465    374.840    0.007   -0.194  0.019   0.024          0    NoError   \
+   82.24135       7.399545       1.90647        725    1        0    NoError   \
+   300.           1.471          B                      INDEF                  \
+   17.56    88740.27      968.8115   9063.903      21.300 0.043 0    NoError    
+Nov30056a.fits         828.955   382.499   18    Nov30056a.fits-daofind 18     \
+   829.175    381.965    0.220   -0.534  0.044   0.036          0    NoError   \
+   78.84686       7.183286       2.52866        723    3        0    NoError   \
+   300.           1.471          B                      INDEF                  \
+   17.56    76380.01      969.3058   -46.71762     INDEF  INDEF 0    NoError    
+Nov30056a.fits         471.393   394.609   19    Nov30056a.fits-daofind 19     \
+   471.698    394.479    0.305   -0.130  0.047   0.035          0    NoError   \
+   81.49645       7.478339       2.223117       726    1        0    NoError   \
+   300.           1.471          B                      INDEF                  \
+   17.56    81367.05      969.1515   2384.638      22.749 0.163 0    NoError    
+Nov30056a.fits         628.872   434.699   20    Nov30056a.fits-daofind 20     \
+   629.255    434.000    0.383   -0.699  0.031   0.000          0    NoError   \
+   79.51921       7.100809       -3.722936      721    1        0    NoError   \
+   300.           1.471          B                      INDEF                  \
+   17.56    77467.58      968.9485   417.5617      24.641 0.881 0    NoError    
+Nov30056a.fits         569.202   447.897   21    Nov30056a.fits-daofind 21     \
+   569.950    447.613    0.748   -0.284  0.059   0.036          0    NoError   \
+   80.37527       7.391868       2.243712       720    1        0    NoError   \
+   300.           1.471          B                      INDEF                  \
+   17.56    77791.66      968.3752   -41.7544      INDEF  INDEF 0    NoError    
+Nov30056a.fits         197.220   476.595   22    Nov30056a.fits-daofind 22     \
+   197.254    476.754    0.034   0.159   0.024   0.023          0    NoError   \
+   80.44392       7.256725       2.943495       723    2        0    NoError   \
+   300.           1.471          B                      INDEF                  \
+   17.56    81352.42      968.914    3409.177      22.361 0.111 0    NoError    
+Nov30056a.fits         503.858   478.162   23    Nov30056a.fits-daofind 23     \
+   504.497    478.349    0.639   0.187   0.039   0.037          0    NoError   \
+   81.44128       7.309974       -2.659052      718    4        0    NoError   \
+   300.           1.471          B                      INDEF                  \
+   17.56    79175.37      969.2728   236.5552      25.258 1.602 0    NoError    
+Nov30056a.fits         721.818   490.980   24    Nov30056a.fits-daofind 24     \
+   721.305    490.647    -0.513  -0.333  0.037   0.037          0    NoError   \
+   79.62043       7.24205        1.413881       726    2        0    NoError   \
+   300.           1.471          B                      INDEF                  \
+   17.56    79681.51      969.3061   2504.942      22.696 0.150 0    NoError    
+Nov30056a.fits         691.136   513.242   25    Nov30056a.fits-daofind 25     \
+   690.977    512.709    -0.159  -0.533  0.010   0.050          0    NoError   \
+   80.1907        7.465589       -2.394376      716    4        0    NoError   \
+   300.           1.471          B                      INDEF                  \
+   17.56    78581.22      968.7294   898.1271      23.809 0.432 0    NoError    
+Nov30056a.fits         210.577   521.151   26    Nov30056a.fits-daofind 26     \
+   210.548    521.094    -0.029  -0.057  0.006   0.008          0    NoError   \
+   82.34843       7.440491       3.335652       724    2        0    NoError   \
+   300.           1.471          B                      INDEF                  \
+   17.56    174572.2      968.5259   94815.59      18.751 0.005 0    NoError    
+Nov30056a.fits         578.451   537.188   27    Nov30056a.fits-daofind 27     \
+   578.458    537.000    0.008   -0.188  0.041   0.000          0    NoError   \
+   80.89586       7.270268       0.8337677      717    5        0    NoError   \
+   300.           1.471          B                      INDEF                  \
+   17.56    79471.6       968.3576   1135.48       23.555 0.332 0    NoError    
+Nov30056a.fits         390.126   551.668   28    Nov30056a.fits-daofind 28     \
+   389.870    551.384    -0.256  -0.284  0.012   0.009          0    NoError   \
+   82.29298       7.324865       -2.421996      722    4        0    NoError   \
+   300.           1.471          B                      INDEF                  \
+   17.56    125714.       968.6126   46003.99      19.536 0.009 0    NoError    
+Nov30056a.fits         974.321   585.037   29    Nov30056a.fits-daofind 29     \
+   973.575    584.688    -0.746  -0.349  0.059   0.112          0    NoError   \
+   78.10085       6.809978       3.183666       724    4        0    NoError   \
+   300.           1.471          B                      INDEF                  \
+   17.56    75139.67      969.2813   -562.0252     INDEF  INDEF 0    NoError    
+Nov30056a.fits         440.677   601.109   30    Nov30056a.fits-daofind 30     \
+   440.605    600.992    -0.072  -0.117  0.006   0.006          0    NoError   \
+   83.37901       7.244534       0.6784597      714    4        0    NoError   \
+   300.           1.471          B                      INDEF                  \
+   17.56    246802.6      968.3119   166065.7      18.142 0.003 0    NoError    
+Nov30056a.fits         66.842    623.916   31    Nov30056a.fits-daofind 31     \
+   66.383     623.995    -0.459  0.079   0.039   0.006          0    NoError   \
+   81.69957       6.914546       3.518431       718    2        0    NoError   \
+   300.           1.471          B                      INDEF                  \
+   17.56    79445.46      968.3058   335.2892      24.879 1.069 0    NoError    
+Nov30056a.fits         582.750   660.016   32    Nov30056a.fits-daofind 32     \
+   582.740    659.741    -0.010  -0.275  0.021   0.018          0    NoError   \
+   80.52163       7.62383        -3.698507      721    2        0    NoError   \
+   300.           1.471          B                      INDEF                  \
+   17.56    96984.23      968.9294   18964.46      20.498 0.022 0    NoError    
+Nov30056a.fits         417.019   689.401   33    Nov30056a.fits-daofind 33     \
+   416.986    689.081    -0.033  -0.320  0.010   0.072          0    NoError   \
+   80.55865       7.146884       2.089565       727    3        0    NoError   \
+   300.           1.471          B                      INDEF                  \
+   17.56    78582.67      969.6568   468.4226      24.516 0.789 0    NoError    
+Nov30056a.fits         322.438   730.631   34    Nov30056a.fits-daofind 34     \
+   322.713    730.875    0.275   0.244   0.084   0.078          0    NoError   \
+   82.1799        7.158824       2.865841       721    4        0    NoError   \
+   300.           1.471          B                      INDEF                  \
+   17.56    79016.6       968.7698   -596.8127     INDEF  INDEF 0    NoError    
+Nov30056a.fits         894.990   730.685   35    Nov30056a.fits-daofind 35     \
+   894.263    730.858    -0.727  0.173   0.031   0.071          0    NoError   \
+   78.59267       6.876723       -1.515386      723    2        0    NoError   \
+   300.           1.471          B                      INDEF                  \
+   17.56    76210.29      968.8419   66.41871      26.637 5.353 0    NoError    
+Nov30056a.fits         937.571   736.557   36    Nov30056a.fits-daofind 36     \
+   937.576    736.513    0.005   -0.044  0.024   0.023          0    NoError   \
+   77.64871       7.181325       2.561993       724    2        0    NoError   \
+   300.           1.471          B                      INDEF                  \
+   17.56    84634.29      969.443    9358.291      21.265 0.040 0    NoError    
+Nov30056a.fits         94.853    825.018   37    Nov30056a.fits-daofind 37     \
+   94.803     825.057    -0.050  0.039   0.026   0.036          0    NoError   \
+   82.8929        7.646137       -1.951144      723    3        0    NoError   \
+   300.           1.471          B                      INDEF                  \
+   17.56    83419.77      969.1846   3081.254      22.471 0.129 0    NoError    
+Nov30056a.fits         654.702   906.312   38    Nov30056a.fits-daofind 38     \
+   654.690    906.486    -0.012  0.174   0.013   0.013          0    NoError   \
+   80.83646       6.596022       -1.415891      722    4        0    NoError   \
+   300.           1.471          B                      INDEF                  \
+   17.56    79795.01      969.1753   1450.311      23.289 0.236 0    NoError    
+Nov30056a.fits         473.237   936.327   39    Nov30056a.fits-daofind 39     \
+   473.478    936.219    0.241   -0.108  0.034   0.027          0    NoError   \
+   81.02752       7.314434       2.437995       719    3        0    NoError   \
+   300.           1.471          B                      INDEF                  \
+   17.56    82817.13      968.9889   4302.364      22.109 0.089 0    NoError    
+Nov30056a.fits         676.816   977.185   40    Nov30056a.fits-daofind 40     \
+   677.000    977.014    0.184   -0.171  0.000   0.057          0    NoError   \
+   79.81983       7.442602       1.279227       731    5        0    NoError   \
+   300.           1.471          B                      INDEF                  \
+   17.56    78429.62      969.7029   1028.091      23.663 0.374 0    NoError    

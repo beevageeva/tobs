@@ -1,8 +1,7 @@
 configLocal.py
-listCenter
-listCenterAligned-*
 r.log
 r.aux
 r.out
 *.pyc
-imagenesfits/*
+M37New/flat/**/*.fits
+M37New/object/**/*.fits
