@@ -1,0 +1,366 @@
+(13.7, 'R', 1.059)
+(13.7, 'R', 1.052)
+(13.2, 'R', 1.049)
+(13.6, 'R', 1.067)
+(14.2, 'V', 1.069)
+(14.2, 'V', 1.061)
+(14.3, 'V', 1.054)
+(15.9, 'B', 1.064)
+(15.9, 'B', 1.056)
+(15.9, 'B', 1.072)
+Filter R coef = 7.125
+Filter V coef = 0.308
+Filter B coef = -0.000
+FN = /scratch1/tobs/M37New/ALSREAD-M37/RESOBJ_2
+filter = R , mag = 14.400 , newmag = 6.854
+filter = R , mag = 14.500 , newmag = 7.004
+filter = R , mag = 13.700 , newmag = 6.225
+filter = R , mag = 14.400 , newmag = 6.797
+filter = V , mag = 14.400 , newmag = 14.071
+filter = V , mag = 14.500 , newmag = 14.173
+filter = V , mag = 14.600 , newmag = 14.276
+filter = B , mag = 15.400 , newmag = 15.400
+filter = B , mag = 15.400 , newmag = 15.400
+filter = B , mag = 15.300 , newmag = 15.300
+FN = /scratch1/tobs/M37New/ALSREAD-M37/RESOBJ_9
+filter = R , mag = 14.600 , newmag = 7.054
+filter = R , mag = 14.700 , newmag = 7.204
+filter = R , mag = 13.800 , newmag = 6.325
+filter = R , mag = 14.500 , newmag = 6.897
+filter = V , mag = 14.500 , newmag = 14.171
+filter = V , mag = 14.600 , newmag = 14.273
+filter = V , mag = 14.600 , newmag = 14.276
+filter = B , mag = 15.300 , newmag = 15.300
+filter = B , mag = 15.300 , newmag = 15.300
+filter = B , mag = 15.200 , newmag = 15.200
+FN = /scratch1/tobs/M37New/ALSREAD-M37/RESOBJ_1
+filter = R , mag = 14.400 , newmag = 6.854
+filter = R , mag = 14.500 , newmag = 7.004
+filter = R , mag = 13.700 , newmag = 6.225
+filter = R , mag = 14.400 , newmag = 6.797
+filter = V , mag = 14.900 , newmag = 14.571
+filter = V , mag = 14.900 , newmag = 14.573
+filter = V , mag = 15.000 , newmag = 14.676
+filter = B , mag = 16.400 , newmag = 16.400
+filter = B , mag = 16.500 , newmag = 16.500
+filter = B , mag = 16.400 , newmag = 16.400
+FN = /scratch1/tobs/M37New/ALSREAD-M37/RESOBJ_4
+filter = R , mag = 14.500 , newmag = 6.954
+filter = R , mag = 14.500 , newmag = 7.004
+filter = R , mag = 13.700 , newmag = 6.225
+filter = R , mag = 14.400 , newmag = 6.797
+filter = V , mag = 14.900 , newmag = 14.571
+filter = V , mag = 15.000 , newmag = 14.673
+filter = V , mag = 15.000 , newmag = 14.676
+filter = B , mag = 16.500 , newmag = 16.500
+filter = B , mag = 16.600 , newmag = 16.600
+filter = B , mag = 16.500 , newmag = 16.500
+FN = /scratch1/tobs/M37New/ALSREAD-M37/RESOBJ_7
+filter = R , mag = 14.500 , newmag = 6.954
+filter = R , mag = 14.600 , newmag = 7.104
+filter = R , mag = 13.800 , newmag = 6.325
+filter = R , mag = 14.500 , newmag = 6.897
+filter = V , mag = 15.000 , newmag = 14.671
+filter = V , mag = 15.000 , newmag = 14.673
+filter = V , mag = 15.100 , newmag = 14.776
+filter = B , mag = 16.500 , newmag = 16.500
+filter = B , mag = 16.600 , newmag = 16.600
+filter = B , mag = 16.500 , newmag = 16.500
+FN = /scratch1/tobs/M37New/ALSREAD-M37/RESOBJ_5
+filter = R , mag = 14.500 , newmag = 6.954
+filter = R , mag = 14.600 , newmag = 7.104
+filter = R , mag = 13.800 , newmag = 6.325
+filter = R , mag = 14.500 , newmag = 6.897
+filter = V , mag = 15.000 , newmag = 14.671
+filter = V , mag = 15.000 , newmag = 14.673
+filter = V , mag = 15.100 , newmag = 14.776
+filter = B , mag = 16.600 , newmag = 16.600
+filter = B , mag = 16.600 , newmag = 16.600
+filter = B , mag = 16.500 , newmag = 16.500
+FN = /scratch1/tobs/M37New/ALSREAD-M37/RESOBJ_8
+filter = R , mag = 14.500 , newmag = 6.954
+filter = R , mag = 14.700 , newmag = 7.204
+filter = R , mag = 13.800 , newmag = 6.325
+filter = R , mag = 14.500 , newmag = 6.897
+filter = V , mag = 15.000 , newmag = 14.671
+filter = V , mag = 15.000 , newmag = 14.673
+filter = V , mag = 15.100 , newmag = 14.776
+filter = B , mag = 16.500 , newmag = 16.500
+filter = B , mag = 16.600 , newmag = 16.600
+filter = B , mag = 16.500 , newmag = 16.500
+FN = /scratch1/tobs/M37New/ALSREAD-M37/RESOBJ_0
+filter = R , mag = 13.700 , newmag = 6.154
+filter = R , mag = 13.700 , newmag = 6.204
+filter = R , mag = 13.200 , newmag = 5.725
+filter = R , mag = 13.600 , newmag = 5.997
+filter = V , mag = 14.200 , newmag = 13.871
+filter = V , mag = 14.200 , newmag = 13.873
+filter = V , mag = 14.300 , newmag = 13.976
+filter = B , mag = 15.900 , newmag = 15.900
+filter = B , mag = 15.900 , newmag = 15.900
+filter = B , mag = 15.900 , newmag = 15.900
+FN = /scratch1/tobs/M37New/ALSREAD-M37/RESOBJ_6
+filter = R , mag = 14.500 , newmag = 6.954
+filter = R , mag = 14.700 , newmag = 7.204
+filter = R , mag = 13.800 , newmag = 6.325
+filter = R , mag = 14.500 , newmag = 6.897
+filter = V , mag = 14.500 , newmag = 14.171
+filter = V , mag = 14.600 , newmag = 14.273
+filter = V , mag = 14.700 , newmag = 14.376
+filter = B , mag = 15.400 , newmag = 15.400
+filter = B , mag = 15.500 , newmag = 15.500
+filter = B , mag = 15.400 , newmag = 15.400
+FN = /scratch1/tobs/M37New/ALSREAD-M37/RESOBJ_3
+filter = R , mag = 14.400 , newmag = 6.854
+filter = R , mag = 14.600 , newmag = 7.104
+filter = R , mag = 13.700 , newmag = 6.225
+filter = R , mag = 14.400 , newmag = 6.797
+filter = V , mag = 14.900 , newmag = 14.571
+filter = V , mag = 14.900 , newmag = 14.573
+filter = V , mag = 15.000 , newmag = 14.676
+filter = B , mag = 16.400 , newmag = 16.400
+filter = B , mag = 16.500 , newmag = 16.500
+filter = B , mag = 16.400 , newmag = 16.400
+FN = /scratch1/tobs/M37New/ALSREAD-pg2213_2/RESOBJ_2
+filter = R , mag = 15.100 , newmag = 6.970
+filter = V , mag = 15.300 , newmag = 14.949
+filter = B , mag = 16.400 , newmag = 16.400
+FN = /scratch1/tobs/M37New/ALSREAD-pg2213_2/RESOBJ_9
+filter = R , mag = 17.400 , newmag = 9.270
+filter = V , mag = 17.700 , newmag = 17.349
+filter = B , mag = 18.800 , newmag = 18.800
+FN = /scratch1/tobs/M37New/ALSREAD-pg2213_2/RESOBJ_1
+filter = R , mag = 13.700 , newmag = 5.570
+filter = V , mag = 13.900 , newmag = 13.549
+filter = B , mag = 14.900 , newmag = 14.900
+FN = /scratch1/tobs/M37New/ALSREAD-pg2213_2/RESOBJ_4
+filter = R , mag = 16.300 , newmag = 8.170
+filter = V , mag = 16.600 , newmag = 16.249
+filter = B , mag = 17.700 , newmag = 17.700
+FN = /scratch1/tobs/M37New/ALSREAD-pg2213_2/RESOBJ_7
+filter = R , mag = 16.600 , newmag = 8.470
+filter = V , mag = 16.900 , newmag = 16.549
+filter = B , mag = 17.900 , newmag = 17.900
+FN = /scratch1/tobs/M37New/ALSREAD-pg2213_2/RESOBJ_5
+filter = R , mag = 16.500 , newmag = 8.370
+filter = V , mag = 16.700 , newmag = 16.349
+filter = B , mag = 17.700 , newmag = 17.700
+FN = /scratch1/tobs/M37New/ALSREAD-pg2213_2/RESOBJ_8
+filter = R , mag = 17.000 , newmag = 8.870
+filter = V , mag = 16.700 , newmag = 16.349
+filter = B , mag = 17.000 , newmag = 17.000
+FN = /scratch1/tobs/M37New/ALSREAD-pg2213_2/RESOBJ_0
+filter = R , mag = 13.200 , newmag = 5.070
+filter = R , mag = 14.000 , newmag = 5.870
+filter = V , mag = 13.300 , newmag = 12.949
+filter = V , mag = 13.800 , newmag = 13.449
+filter = B , mag = 13.200 , newmag = 13.200
+FN = /scratch1/tobs/M37New/ALSREAD-pg2213_2/RESOBJ_6
+filter = R , mag = 16.500 , newmag = 8.370
+filter = V , mag = 16.800 , newmag = 16.449
+filter = B , mag = 17.800 , newmag = 17.800
+FN = /scratch1/tobs/M37New/ALSREAD-pg2213_2/RESOBJ_3
+filter = R , mag = 16.200 , newmag = 8.070
+filter = V , mag = 16.400 , newmag = 16.049
+filter = B , mag = 17.500 , newmag = 17.500
+FN = /scratch1/tobs/M37New/ALSREAD-pg2213/RESOBJ_2
+filter = R , mag = 15.200 , newmag = 5.046
+filter = V , mag = 15.400 , newmag = 14.954
+filter = B , mag = 16.500 , newmag = 16.500
+FN = /scratch1/tobs/M37New/ALSREAD-pg2213/RESOBJ_9
+filter = R , mag = 18.300 , newmag = 8.146
+filter = V , mag = 18.500 , newmag = 18.054
+filter = B , mag = 19.600 , newmag = 19.600
+FN = /scratch1/tobs/M37New/ALSREAD-pg2213/RESOBJ_1
+filter = R , mag = 15.100 , newmag = 4.946
+filter = V , mag = 15.300 , newmag = 14.854
+filter = B , mag = 16.500 , newmag = 16.500
+FN = /scratch1/tobs/M37New/ALSREAD-pg2213/RESOBJ_4
+filter = R , mag = 16.400 , newmag = 6.246
+filter = V , mag = 16.600 , newmag = 16.154
+filter = B , mag = 17.900 , newmag = 17.900
+FN = /scratch1/tobs/M37New/ALSREAD-pg2213/RESOBJ_7
+filter = R , mag = 17.300 , newmag = 7.146
+filter = V , mag = 17.500 , newmag = 17.054
+filter = B , mag = 18.900 , newmag = 18.900
+FN = /scratch1/tobs/M37New/ALSREAD-pg2213/RESOBJ_5
+filter = R , mag = 16.700 , newmag = 6.546
+filter = V , mag = 16.900 , newmag = 16.454
+filter = B , mag = 18.000 , newmag = 18.000
+FN = /scratch1/tobs/M37New/ALSREAD-pg2213/RESOBJ_8
+filter = R , mag = 17.500 , newmag = 7.346
+filter = V , mag = 17.800 , newmag = 17.354
+filter = B , mag = 19.000 , newmag = 19.000
+FN = /scratch1/tobs/M37New/ALSREAD-pg2213/RESOBJ_0
+filter = R , mag = 13.700 , newmag = 3.546
+filter = R , mag = 13.300 , newmag = 3.146
+filter = V , mag = 13.700 , newmag = 13.254
+filter = V , mag = 13.400 , newmag = 12.954
+filter = B , mag = 13.300 , newmag = 13.300
+FN = /scratch1/tobs/M37New/ALSREAD-pg2213/RESOBJ_6
+filter = R , mag = 17.100 , newmag = 6.946
+filter = V , mag = 16.800 , newmag = 16.354
+filter = B , mag = 17.100 , newmag = 17.100
+FN = /scratch1/tobs/M37New/ALSREAD-pg2213/RESOBJ_3
+filter = R , mag = 16.400 , newmag = 6.246
+filter = V , mag = 16.500 , newmag = 16.054
+filter = B , mag = 17.700 , newmag = 17.700
+FN = /scratch1/tobs/M37New/ALSREAD-pg2331/RESOBJ_2
+filter = R , mag = 16.300 , newmag = 8.270
+filter = V , mag = 16.500 , newmag = 16.155
+filter = B , mag = 17.500 , newmag = 17.500
+FN = /scratch1/tobs/M37New/ALSREAD-pg2331/RESOBJ_9
+filter = R , mag = 19.300 , newmag = 11.270
+filter = V , mag = 19.600 , newmag = 19.255
+filter = B , mag = 20.700 , newmag = 20.700
+FN = /scratch1/tobs/M37New/ALSREAD-pg2331/RESOBJ_1
+filter = R , mag = 15.400 , newmag = 7.370
+filter = V , mag = 15.700 , newmag = 15.355
+filter = B , mag = 16.700 , newmag = 16.700
+FN = /scratch1/tobs/M37New/ALSREAD-pg2331/RESOBJ_4
+filter = R , mag = 17.900 , newmag = 9.870
+filter = V , mag = 17.700 , newmag = 17.355
+filter = B , mag = 18.200 , newmag = 18.200
+FN = /scratch1/tobs/M37New/ALSREAD-pg2331/RESOBJ_7
+filter = R , mag = 18.500 , newmag = 10.470
+filter = V , mag = 18.700 , newmag = 18.355
+filter = B , mag = 19.800 , newmag = 19.800
+FN = /scratch1/tobs/M37New/ALSREAD-pg2331/RESOBJ_5
+filter = R , mag = 18.100 , newmag = 10.070
+filter = V , mag = 19.100 , newmag = 18.755
+filter = B , mag = 20.900 , newmag = 20.900
+FN = /scratch1/tobs/M37New/ALSREAD-pg2331/RESOBJ_8
+filter = R , mag = 18.800 , newmag = 10.770
+filter = V , mag = 19.200 , newmag = 18.855
+filter = B , mag = 20.600 , newmag = 20.600
+FN = /scratch1/tobs/M37New/ALSREAD-pg2331/RESOBJ_0
+filter = R , mag = 15.000 , newmag = 6.970
+filter = V , mag = 15.200 , newmag = 14.855
+filter = B , mag = 16.100 , newmag = 16.100
+FN = /scratch1/tobs/M37New/ALSREAD-pg2331/RESOBJ_6
+filter = R , mag = 18.200 , newmag = 10.170
+filter = V , mag = 18.700 , newmag = 18.355
+filter = B , mag = 20.100 , newmag = 20.100
+FN = /scratch1/tobs/M37New/ALSREAD-pg2331/RESOBJ_3
+filter = R , mag = 17.000 , newmag = 8.970
+filter = V , mag = 17.300 , newmag = 16.955
+filter = B , mag = 18.400 , newmag = 18.400
+FN = /scratch1/tobs/M37New/ALSREAD-pg0918/RESOBJ_2
+filter = R , mag = 15.100 , newmag = 4.177
+filter = V , mag = 15.400 , newmag = 14.933
+filter = B , mag = 16.600 , newmag = 16.600
+FN = /scratch1/tobs/M37New/ALSREAD-pg0918/RESOBJ_9
+filter = R , mag = 17.600 , newmag = 6.677
+filter = V , mag = 17.700 , newmag = 17.233
+filter = B , mag = 18.600 , newmag = 18.600
+FN = /scratch1/tobs/M37New/ALSREAD-pg0918/RESOBJ_1
+filter = R , mag = 14.900 , newmag = 3.977
+filter = V , mag = 15.100 , newmag = 14.633
+filter = B , mag = 16.100 , newmag = 16.100
+FN = /scratch1/tobs/M37New/ALSREAD-pg0918/RESOBJ_4
+filter = R , mag = 16.100 , newmag = 5.177
+filter = V , mag = 16.200 , newmag = 15.733
+filter = B , mag = 17.200 , newmag = 17.200
+FN = /scratch1/tobs/M37New/ALSREAD-pg0918/RESOBJ_7
+filter = R , mag = 17.000 , newmag = 6.077
+filter = V , mag = 17.200 , newmag = 16.733
+filter = B , mag = 18.100 , newmag = 18.100
+FN = /scratch1/tobs/M37New/ALSREAD-pg0918/RESOBJ_5
+filter = R , mag = 16.400 , newmag = 5.477
+filter = V , mag = 16.000 , newmag = 15.533
+filter = B , mag = 16.300 , newmag = 16.300
+FN = /scratch1/tobs/M37New/ALSREAD-pg0918/RESOBJ_8
+filter = R , mag = 17.400 , newmag = 6.477
+filter = V , mag = 17.500 , newmag = 17.033
+filter = B , mag = 18.400 , newmag = 18.400
+FN = /scratch1/tobs/M37New/ALSREAD-pg0918/RESOBJ_0
+filter = R , mag = 14.600 , newmag = 3.677
+filter = V , mag = 15.000 , newmag = 14.533
+filter = B , mag = 16.300 , newmag = 16.300
+FN = /scratch1/tobs/M37New/ALSREAD-pg0918/RESOBJ_6
+filter = R , mag = 16.400 , newmag = 5.477
+filter = V , mag = 16.700 , newmag = 16.233
+filter = B , mag = 17.700 , newmag = 17.700
+FN = /scratch1/tobs/M37New/ALSREAD-pg0918/RESOBJ_3
+filter = R , mag = 15.500 , newmag = 4.577
+filter = V , mag = 15.700 , newmag = 15.233
+filter = B , mag = 16.700 , newmag = 16.700
+FN = /scratch1/tobs/M37New/ALSREAD-pg0231/RESOBJ_2
+filter = R , mag = 17.100 , newmag = 4.281
+filter = V , mag = 17.600 , newmag = 17.061
+filter = B , mag = 19.400 , newmag = 19.400
+FN = /scratch1/tobs/M37New/ALSREAD-pg0231/RESOBJ_9
+filter = R , mag = 18.900 , newmag = 6.081
+filter = V , mag = 19.200 , newmag = 18.661
+FN = /scratch1/tobs/M37New/ALSREAD-pg0231/RESOBJ_1
+filter = R , mag = 17.000 , newmag = 4.181
+filter = V , mag = 17.200 , newmag = 16.661
+filter = B , mag = 18.700 , newmag = 18.700
+FN = /scratch1/tobs/M37New/ALSREAD-pg0231/RESOBJ_4
+filter = R , mag = 17.500 , newmag = 4.681
+filter = V , mag = 18.300 , newmag = 17.761
+filter = B , mag = 20.400 , newmag = 20.400
+FN = /scratch1/tobs/M37New/ALSREAD-pg0231/RESOBJ_7
+filter = R , mag = 19.600 , newmag = 6.781
+filter = V , mag = 19.800 , newmag = 19.261
+filter = B , mag = 21.300 , newmag = 21.300
+FN = /scratch1/tobs/M37New/ALSREAD-pg0231/RESOBJ_5
+filter = R , mag = 17.900 , newmag = 5.081
+filter = V , mag = 18.000 , newmag = 17.461
+filter = B , mag = 19.400 , newmag = 19.400
+FN = /scratch1/tobs/M37New/ALSREAD-pg0231/RESOBJ_8
+filter = R , mag = 20.000 , newmag = 7.181
+filter = V , mag = 19.600 , newmag = 19.061
+filter = B , mag = 20.300 , newmag = 20.300
+FN = /scratch1/tobs/M37New/ALSREAD-pg0231/RESOBJ_0
+filter = R , mag = 16.100 , newmag = 3.281
+filter = V , mag = 16.200 , newmag = 15.661
+filter = B , mag = 17.800 , newmag = 17.800
+FN = /scratch1/tobs/M37New/ALSREAD-pg0231/RESOBJ_6
+filter = R , mag = 19.400 , newmag = 6.581
+filter = V , mag = 19.600 , newmag = 19.061
+filter = B , mag = 21.200 , newmag = 21.200
+FN = /scratch1/tobs/M37New/ALSREAD-pg0231/RESOBJ_3
+filter = R , mag = 17.200 , newmag = 4.381
+filter = V , mag = 17.400 , newmag = 16.861
+filter = B , mag = 18.900 , newmag = 18.900
+FN = /scratch1/tobs/M37New/ALSREAD-pg0231_2/RESOBJ_2
+filter = R , mag = 17.100 , newmag = 0.961
+filter = V , mag = 17.600 , newmag = 16.893
+filter = B , mag = 19.400 , newmag = 19.400
+FN = /scratch1/tobs/M37New/ALSREAD-pg0231_2/RESOBJ_9
+filter = R , mag = 19.800 , newmag = 3.661
+filter = V , mag = 20.100 , newmag = 19.393
+filter = B , mag = 21.700 , newmag = 21.700
+FN = /scratch1/tobs/M37New/ALSREAD-pg0231_2/RESOBJ_1
+filter = R , mag = 17.000 , newmag = 0.861
+filter = V , mag = 17.200 , newmag = 16.493
+filter = B , mag = 18.700 , newmag = 18.700
+FN = /scratch1/tobs/M37New/ALSREAD-pg0231_2/RESOBJ_4
+filter = R , mag = 17.500 , newmag = 1.361
+filter = V , mag = 18.300 , newmag = 17.593
+filter = B , mag = 20.400 , newmag = 20.400
+FN = /scratch1/tobs/M37New/ALSREAD-pg0231_2/RESOBJ_7
+filter = R , mag = 19.400 , newmag = 3.261
+filter = V , mag = 19.600 , newmag = 18.893
+filter = B , mag = 21.200 , newmag = 21.200
+FN = /scratch1/tobs/M37New/ALSREAD-pg0231_2/RESOBJ_5
+filter = R , mag = 17.900 , newmag = 1.761
+filter = V , mag = 18.000 , newmag = 17.293
+filter = B , mag = 19.400 , newmag = 19.400
+FN = /scratch1/tobs/M37New/ALSREAD-pg0231_2/RESOBJ_8
+filter = R , mag = 19.600 , newmag = 3.461
+filter = V , mag = 19.800 , newmag = 19.093
+filter = B , mag = 21.300 , newmag = 21.300
+FN = /scratch1/tobs/M37New/ALSREAD-pg0231_2/RESOBJ_0
+filter = R , mag = 16.100 , newmag = -0.039
+filter = V , mag = 16.200 , newmag = 15.493
+filter = B , mag = 17.800 , newmag = 17.800
+FN = /scratch1/tobs/M37New/ALSREAD-pg0231_2/RESOBJ_6
+filter = R , mag = 18.900 , newmag = 2.761
+filter = V , mag = 19.200 , newmag = 18.493
+filter = B , mag = 20.800 , newmag = 20.800
+FN = /scratch1/tobs/M37New/ALSREAD-pg0231_2/RESOBJ_3
+filter = R , mag = 17.200 , newmag = 1.061
+filter = V , mag = 17.400 , newmag = 16.693
+filter = B , mag = 18.900 , newmag = 18.900

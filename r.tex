@@ -23,259 +23,6 @@
 
 \begin{document}
 
-Convención del signo de los angulos
-
-$\angle{QOP} > 0$
-\begin{tikzpicture}[scale=.8]
-
-% definitions
-\tkzDefPoint(0,0){O}
-\tkzDefPoint(3,3){P}
-\tkzDefPoint(3,0){Q}
-\tkzMarkAngle[label=QOP, size=1](Q,O,P)
-
-\tkzDrawSegments[thick](O,P)
-\tkzDrawSegments[thick](O,Q)
-\tkzDrawPoints(O,P,Q)
-
-% labels
-\tkzLabelPoints(Q,O,P)
-\end{tikzpicture}
-
-$\angle{QOP} < 0$  o $\angle{QOP} > 12:00:00h $ (los angulos mayores de 180 grados se representan con valor negativo)
-\begin{tikzpicture}[scale=.8]
-
-% definitions
-\tkzDefPoint(0,0){O}
-\tkzDefPoint(3,3){Q}
-\tkzDefPoint(3,0){P}
-\tkzMarkAngle[label=QOP, size=1](Q,O,P)
-
-\tkzDrawSegments[thick](O,P)
-\tkzDrawSegments[thick](O,Q)
-\tkzDrawPoints(O,P,Q)
-
-% labels
-\tkzLabelPoints(Q,O,P)
-\end{tikzpicture}
-
-
-
-\begin{itemize}
-\item O: centro de la tierra y de la esfera celeste (esfera que contiene la esfera de la tierra, el plano ecuadorial terrestre se extiende al plano ecuadorial celeste y la comparte igual que la tierra en 2 hemisferios: norte y sur y el plano del meridiano 0 se puede extender para toda la esfera celeste). La correspondiente de la latitud en la tierra es la declinación para la esfera celeste (negativa si el objeto a observar está en hemisferio sur celeste) y para la longitud la declinación recta(positiva desde el meridiano 0 en el sentido de la rotación dela tierra en torno a su propio eje y negativa en el otro sentido)
-\item P: punto del observador
-\item T: posicion del objeto observado
-\end{itemize}
-
-Proyeccion longitudinal
-P está en el hemisferio norte(latitud positiva) 
-\vspace{5cm}
-
-
-Declinacion negativa
-\begin{tikzpicture}[scale=.8]
-
-% definitions
-\tkzDefPoint(0,0){O}
-\tkzDefPoint(1,1){P}
-\tkzDefPoint(3.5,0){Q}
-\tkzDefPoint(3.42,-0.7){T}
-
-\tkzDefPointWith[orthogonal](P,O) \tkzGetPoint{P1} % find a point P1 orthogonal to PO
-\tkzInterLC(P,P1)(O,Q) \tkzGetPoints{M}{N} % find intersections of a line passing through A and Q with the large circle 
-\tkzInterLC(O,P)(O,Q) \tkzGetPoints{P4}{S} % find intersections of a line passing through A and Q with the large circle 
-\draw [shorten >= -5cm, shorten <=-5cm] (P4)--(S);
-\draw [shorten >= -5cm, shorten <=-5cm] (O)--(Q);
-\node at (8,0.5){Linea del ecuador} ; 
-\node at (8,6){Linea del zenith} ; 
-\draw [shorten >= -5cm, shorten <=-5cm] (P)--(T) ;
-\draw [shorten >= -5cm, shorten <=-5cm] (M)--(N) ;
-%\tkzMarkAngle[label=lat, size=1](Q,O,P)
-
-\tkzDrawSegments[thick](O,T)
-\tkzDrawSegments[thick](T,Q)
-\tkzDrawSegments[thick](P,Q)
-%\tkzMarkAngle[](Q,O,T)
-%\tkzMarkAngle[label=dec, size=1](Q,P,T)
-%\tkzMarkAngle[label=zd, size=1](P4,P,T)
-% drawing
-\tkzDrawCircle(O,P)
-\tkzDrawCircle(O,Q) 
-\node at (0,4){north pole};
-\node at (0,-4){south pole};
-\tkzDrawSegments[thick,gray](O,P)
-\tkzDrawPoints(O,P,Q,T,M,S,N)
-
-% labels
-\tkzLabelPoints(Q,T,O,M,S,N)
-\tkzLabelPoints[right](P)
-\end{tikzpicture}
-
-\vspace{5cm}
-
-Declinacion positiva
-\begin{tikzpicture}[scale=.8]
-
-% definitions
-\tkzDefPoint(0,0){O}
-\tkzDefPoint(1,1){P}
-\tkzDefPoint(3.5,0){Q}
-\tkzDefPoint(3.42,0.7){T}
-\node at (-5,0.5){Linea del ecuador} ; 
-\node at (8,6){Linea del zenith} ; 
-
-\tkzDefPointWith[orthogonal](P,O) \tkzGetPoint{P1} % find a point P1 orthogonal to PO
-\tkzInterLC(P,P1)(O,Q) \tkzGetPoints{M}{N} % find intersections of a line passing through A and Q with the large circle 
-\tkzInterLC(O,P)(O,Q) \tkzGetPoints{P4}{S} % find intersections of a line passing through A and Q with the large circle 
-\draw [shorten >= -5cm, shorten <=-5cm] (P4)--(S);
-\draw [shorten >= -5cm, shorten <=-5cm] (O)--(Q) ;
-\draw [shorten >= -5cm, shorten <=-5cm] (P)--(T) ;
-\draw [shorten >= -5cm, shorten <=-5cm] (M)--(N) ;
-%\tkzMarkAngle[label=lat, size=1](Q,O,P)
-
-\tkzDrawSegments[thick](O,T)
-\tkzDrawSegments[thick](T,Q)
-\tkzDrawSegments[thick](P,Q)
-%\tkzMarkAngle[](Q,O,T)
-%\tkzMarkAngle[label=dec, size=1](Q,P,T)
-%\tkzMarkAngle[label=zd, size=1](P4,P,T)
-% drawing
-\tkzDrawCircle(O,P)
-\tkzDrawCircle(O,Q)
-\node at (0,4){north pole};
-\node at (0,-4){south pole};
-\tkzDrawSegments[thick,gray](O,P)
-\tkzDrawPoints(O,P,Q,T,M,S,N)
-
-% labels
-\tkzLabelPoints(Q,T,O,M,S,N)
-\tkzLabelPoints[right](P)
-\end{tikzpicture}
-
-
-\vspace{5cm}
-\begin{itemize}
-\item OQ: linea del ecuador
-\item OP: linea del zenit del observador(la linea que une el observador con el centro de la tierra) perpendicular en la linea del horizonte MN(solo se pueden ver objetos en el arco MSN: objetos con declinación entre -(90$^\circ$ - latitude) y 180$^\circ$ - (90$^\circ$ - latitude) )
-\item PT: linea de vision del observador
-\item $\angle{QPT}$ Para la proyeccion longitudinal es declinacion medida por el telescopio(negativa si la estrella está debajo del plano ecuadorial) - el angulo en el cielo entre la dirección del telescopio orientado hacia el objeto que observamos y la direccion del telescopio orientado hacía un objeto que está en el ecuador celeste. 
-\item $\angle{QOT}$  declinacion  de la estrella (negativa si la estrella está debajo del plano ecuadorial) - medida desde un punto que esta en el ecuador de la tierra 
-\item $\angle{QOP}$  latitud
-\item $\angle{TPS}$  proyeccion en este plan del angulo zenith distance(formado por la linea del zenith y la direccion en cual apunta el telescopio) 
-\item En práctica esta es zenith distance (el azimuth no cuenta) ZD medida en grados  (dd:mm:ss) con dd entre 00 y 90
-y Airmass se aproxima como 1 / cos(ZD)
-
-
-\end{itemize}
-\begin{description}
-\item $\angle{POQ} = \angle{POT} + \angle{TOQ}$
-\item Q(el objeto de referrencia) está muy lejos asi que las distancias $OQ, PQ, PT, OT \gg OP$(el radio de la tierra) y  $\angle{TPQ}\approx \angle{TOQ} $ (la declinacion medida por el telescopio es aprox la declinacion del objeto observado medida desde un punto del ecuador terrestre si el objeto está bastante lejos)  	
-\item Ademas si se apunta el telescopio cerca al zenith $\angle{SPT} \approx \angle{POT} \approx 0$ así que $\angle{POQ} \approx \angle{TPQ}$(latitud $\approx$ declinación)
-\item Miramos las imagenes del flat del cielo (cuando el telescopio esta orientado aprox hacia el zenith) y determinamos la latitud 28:17:48
-(grados)
-\end{description}
-
-Proyeccion transversal
-P está al este del meridiano 0 terrestre(longitud positiva)
-
-\vspace{5cm}
-
-\begin{tikzpicture}[scale=.8]
-
-% definitions
-\tkzDefPoint(0,0){O}
-\tkzDefPoint(1,1){P}
-\tkzDefPoint(3.5,0){Q}
-\tkzDefPoint(-3.5,0){R}
-\tkzDefPoint(2.75,2.165){T}
-\tkzDefPoint(1.8, 3){Z}
-\node at (8,0.5){Meridian 0$^\circ$ terr} ; 
-\node at (6,8){Meridian 0$^\circ$ cel(Vernal eq)} ; 
-\node at (6.5,6){Linea del zenith} ; 
-\node at (8,5.5){Linea del visión} ; 
-
-\tkzDefPointWith[orthogonal](P,O) \tkzGetPoint{P1} % find a point P1 orthogonal to PO
-\tkzInterLC(P,P1)(O,Q) \tkzGetPoints{M}{N} % find intersections of a line passing through A and Q with the large circle 
-\tkzInterLC(O,P)(O,Q) \tkzGetPoints{P4}{S} % find intersections of a line passing through A and Q with the large circle 
-\tkzInterLC(Q,R)(O,P) \tkzGetPoints{G}{P5} % find intersections of a line passing through A and Q with the large circle 
-\draw [shorten >= -5cm, shorten <=-5cm] (P4)--(S);
-\draw [shorten >= -5cm, shorten <=-5cm] (O)--(Q) ;
-\draw [shorten >= -5cm, shorten <=-5cm] (O)--(Z) ;
-\draw [shorten >= -5cm, shorten <=-5cm] (P)--(T) ;
-\draw [shorten >= -5cm, shorten <=-5cm] (M)--(N) ;
-%\tkzMarkAngle[label=lat, size=1](Q,O,P)
-
-%\tkzDrawSegments[thick](O,T)
-%\tkzDrawSegments[thick](T,Q)
-\tkzDrawSegments[thick](P,Q)
-\tkzDrawSegments[thick](P,Z)
-\tkzDrawSegments[thick](O,Z)
-\tkzDrawSegments[thick](O,T)
-%\tkzMarkAngle[](Q,O,T)
-%\tkzMarkAngle[label=dec, size=1](Q,P,T)
-%\tkzMarkAngle[label=zd, size=1](P4,P,T)
-% drawing
-\tkzDrawCircle(O,P)
-\tkzDrawCircle(O,Q)
-\draw [->,line width=1pt] (0,-4) arc[x radius=0.5cm, y radius =.5cm, start angle=-200, end angle=20];
-\node at (0,-5){Rotacion de la tierra al torno de su eje} ; 
-\tkzDrawSegments[thick,gray](O,P)
-\tkzDrawPoints(O,P,Q,T,M,S,N,Z,R,G)
-
-% labels
-\tkzLabelPoints(Q,T,M,N,R,G)
-\tkzLabelPoints[left](P)
-\tkzLabelPoints[above](O,Z,S)
-\end{tikzpicture}
-
-\vspace{5cm}
-\begin{itemize}
-\item Z vernal equinox
-\item G punto en la tierra en el meridiano 0
-\item $\angle{ZOQ}$ UniversalTime
-\item $\angle{ZPT} \approx \angle{ZOT}$ RightAscension
-\item $\angle{ZPS} \approx \angle{ZOS}$ SiderealTime
-\item $\angle{SPT} \approx \angle{SOT}$ object hour
-\item (ST = RA + h), cuando el objeto a observar está justo arriba(h=0) ST = RA
-\item $\angle{QOP}$ longitud
-\end{itemize}
-
-
-\begin{description}
-\item Cuando Sidereal Time es aprox 0 UT representa la longitud
-\item longitud 22:21:45(hours) = -24:34:45(degrees)    
-
-\end{description}
-
-\subsection*{Instrumento}
-\url{http://www.ing.iac.es/astronomy/instruments/wfc/index.html}
-
-\subsection*{Noise}
-En los headers de las imagenes(y en la especificacion de la pagina web para exposisiones largas(48 sec) - exposiciones cortas(29 sec)):
-\begin{description}
-\item GAIN    =                   2.  /  gain, electrons per adu (1.26 - 2.5)
-\item RDNOISE =                  5.4  /  read noise, electrons (4.6 - 9)
-\end{description}
-
-En la pagina web:
-\begin{description}
-\item Noise(ADU) (3.7 - 3.6)
-\item Bias (2030 - 1830)
-\end{description}
-
-\subsection*{Field of view and detector size}
-En la pagina web:
-\begin{description}
-\item Field of View 34x34arcmin
-\item Pixel scale 0.333 arcsec / pixel
-\item pixel size = 13.5 microns
-\end{description}
-
-
-\begin{description}
-\item Numero de pixeles del detector = FOV / pixel scale = 6126 x 6126, diferente al numero de pixeles por filas y columnas del header de las imagenes fits 
-\item tamaño del detector = num pixeles * pixel size = 82.7 mm
-\end{description}
 
 
 \subsection*{Reducción de las imagenes}
@@ -652,10 +399,12 @@ y separamos las imagenes para cada una con
 $ python createStdLists.py
 \end{verbatim}
 
-
 como observamos que hay varias imagenes para el mismo objeto tenemos que rehacer todo el proceso de fotometría como en el caso del 
 cúmulo empezando con elegir una imagen de referencia, centrar, alinear , ...
-Vemos que para pg0231 y pg2213 se tomaron 2 turnos de fotos en cada filtro - las imagenes están un poco desplazadas (aunque  DEC y RA no cambia mucho - de la magnitud que en el caso de las imagenes del cúmulo hay que tratarlas diferente porque siendo unas estrellas estándar - que se usan para la calibración - están mucho mas cerca que el cúmulo y las diferencias se notan mas y luego las coordenadas de las estrellas no cuadran)
+
+En realidad tenía que haber considerado estas imagenes cuando sacamos la imagen PSF (el las medias que aparecen en los parámetros fitskypars, photpars , fitrad) porque voy a usar la misma PSF
+
+Vemos que para pg0231 y pg2213 se tomaron 2 turnos de fotos en cada filtro - las imagenes están un poco desplazadas (aunque  DEC y RA no cambia mucho - pero a la diferencia de las imagenes del cúmulo hay que tratarlas diferente porque siendo unas estrellas estándar - que se usan para la calibración - están mucho mas cerca que el cúmulo y las diferencias se notan mas y luego las coordenadas de las estrellas no cuadran)
 \item 
 elegimos como imagen referencia para pg0231  M37New/object/V/Nov30047.fits y creamos el fichero coords-47.txt
 elegimos como imagen referencia para pg0231-2  M37New/object/V/Nov30094.fits y creamos el fichero coords-94.txt
@@ -678,7 +427,7 @@ ecl>imcentroid input="M37New/object/V/Nov30043.fits" reference="M37New/object/V/
 
 \item 
 
-para alinear las imagenes primero creamos las listas de las imagenes para cada uno:
+para alinear las imagenes primero creamos las listas de las imagenes para cada uno( y luego separamos  las imagenes para pg0231, pg2231 )
 
 \begin{verbatim}
 python createListAlignObject.py --objectName=pg0231
@@ -687,8 +436,6 @@ python createListAlignObject.py --objectName=pg2213
 python createListAlignObject.py --objectName=pg2331
 
 \end{verbatim}
-Antes de ejecutar imalign observamos por ejemplo que en las imagenes para pg0231 de han hecho 2
-ejecutamos imalign
 
 
 {\tiny 
@@ -705,30 +452,52 @@ ecl>imalign input="@listCenter-pg2331" output="@listCenterAligned-pg2331" refere
 \end{verbatim}
 }
 
-\item python readAlsFiles.py --listFiles=listCenterAligned-M37
-\item python makeCharts.py --listFiles=listCenterAligned-M37
+\item 
+Creamos unos ficheros donde intentamos identificar las estrellas comunes (tienen XCENTER y YCENTER cada 2 con distancia entre los centers < R que en el caso de las estrellas de calibración elegí 6 y para el cúmulo 1: las estrellas de calibración están mas cerca de nosotros y las distancia entre los puntos aparece mayor en la imagen)
+Esto crea unos  ficheros  que usaré mas adelante: ver el código python!
+\begin{verbatim}
+python readAlsFiles.py --listFiles=listCenterAligned-M37
+\end{verbatim}
+Para comprobar que el radio elegido ha estado bien y que las esterllas tienen el mismo número podemos mirar como están identificadas en las imagenes. Hacemos las imagenes con
+\begin{verbatim}
+ 	python makeCharts.py --listFiles=listCenterAligned-M37
+	python makeCharts.py --listFiles=listCenterAligned-pg0231 --exclude=0,9 --scale
+\end{verbatim}
 
-expoenential norm in colormap
- python makeCharts.py --listFiles=listCenterAligned-pg0231 --exclude=0,9 --scale
+Este programa te marca las estrellas en las imagenes (siempre 10 para no saturar la imagen)
+El orden en cual están marcadas está definido en readAlsFiles.py y es decreciente de la funcion:  Numero de apariciones en los ficheros * 100 - MAG  (porque me interesa que aparezca en mas ficheros además de ser mas brillante - con MAG menor). Pero si quiero que no marque una estrella en la imagen la pongo en exclude
+
+(No supe como poner expoenential norm in colormap en matplotlib- las imagenes aparecen muy oscuras, necesito evidenciar valores mas altos de los pixeles y el parámetro scale hace vals = K ** vals con K una constante que depende del filtro usado: R necesita K menor que B)
+
+y luego para ponerlas todas juntas 
+\begin{verbatim}
 python createMontage.py m37
+\end{verbatim}
 
-\item Extinción atmosférica
+\begin{figure}[!ht]
+ \centering
+ \includegraphics[scale=0.25]{MONTAGEpg0918.png}
+ \caption{\emph{PG0918}}
+\end{figure}
+
+\item \textbf{Extinción atmosférica}
 \begin{description}
-\item Hay que elegir una estrella del cúmulo  que aparezca en todas las imagenes ya que no hay muchas:
+\item Hay que elegir una estrella del cúmulo (elijo la mas brillante que aparece en todas las imagenes, al principio pensé elegir una estrella estándar que usaremos para la calibración , porque estando mas cerca los errores serían menores, pero estas solo aparecen en una imágen cada una para cada filtro)
 estrella 5
 {\tiny
 \begin{verbatim}
-[beatrice@localhost tobs]$ cat M37New/ALSREAD-M37/RESOBJ_5
-682.4 327.4 14.5 /home/beatrice/tobs/M37New/object/R/Nov30100a.fits
-682.6 328.2 14.6 /home/beatrice/tobs/M37New/object/R/Nov30097a.fits
-682.5 327.6 13.8 /home/beatrice/tobs/M37New/object/R/Nov30096a.fits
-682.3 327.8 14.5 /home/beatrice/tobs/M37New/object/R/Nov30103a.fits
-682.6 327.6 15.0 /home/beatrice/tobs/M37New/object/V/Nov30104a.fits
-682.8 328.1 15.0 /home/beatrice/tobs/M37New/object/V/Nov30101a.fits
-682.5 327.8 15.1 /home/beatrice/tobs/M37New/object/V/Nov30098a.fits
-682.8 328.0 16.6 /home/beatrice/tobs/M37New/object/B/Nov30102a.fits
-682.2 327.5 16.6 /home/beatrice/tobs/M37New/object/B/Nov30099a.fits
-682.9 328.2 16.5 /home/beatrice/tobs/M37New/object/B/Nov30105a.fits
+[beatrice@localhost tobs]$ cat M37New/ALSREAD-M37/RESOBJ_0
+999.7 817.4 13.7 /home/beatrice/tobs/M37New/object/R/Nov30100a.fits
+999.8 818.0 13.7 /home/beatrice/tobs/M37New/object/R/Nov30097a.fits
+999.8 817.9 13.2 /home/beatrice/tobs/M37New/object/R/Nov30096a.fits
+999.6 817.7 13.6 /home/beatrice/tobs/M37New/object/R/Nov30103a.fits
+999.8 817.5 14.2 /home/beatrice/tobs/M37New/object/V/Nov30104a.fits
+999.9 818.0 14.2 /home/beatrice/tobs/M37New/object/V/Nov30101a.fits
+999.8 817.8 14.3 /home/beatrice/tobs/M37New/object/V/Nov30098a.fits
+1000.0 817.9 15.9 /home/beatrice/tobs/M37New/object/B/Nov30102a.fits
+999.4 817.4 15.9 /home/beatrice/tobs/M37New/object/B/Nov30099a.fits
+1000.1 818.1 15.9 /home/beatrice/tobs/M37New/object/B/Nov30105a.fits
+
 
 [beatrice@localhost tobs]$ for i in `cat M37New/ALSREAD-M37/RESOBJ_5| cut -d' ' -f4`; do python dispHeader.py $i | grep AIRMASS; done
 header[AIRMASS] = 1.059
@@ -742,18 +511,160 @@ header[AIRMASS] = 1.064
 header[AIRMASS] = 1.056
 header[AIRMASS] = 1.072
 
-[beatrice@localhost tobs]$ cat M37New/ALSREAD-M37/RESOBJ_5
+\end{verbatim}
+}
+\item Se hace un gráfico para cada filtro de las magnitudes en funcion de la masa de aire y el coeficiente de extinción es la pendiente del grafico. 
+
+\item De forma automática y luego se corrige para todos generando otros ficheros con las magnitudes corregidas:
+
+\begin{verbatim}
+[beatrice@localhost tobs]$ python correctExt.py
+\end{verbatim}
+
+\item La masa de aire no varía mucho en el caso del cúmulo y los coeficientes no salen muy bien : cogiendo la estrella mas luminosa del cúmulo (estrella 0 marcada en el gráfico)
+
+\begin{verbatim}
+Filter R coef = 7.125
+Filter V coef = 0.308
+Filter B coef = 0.000
+\end{verbatim}
+
+\item Luego las estrellas estandar corregidas de extinción salen muy luminosas (y las diferencias no pueden ser tan grandes a las magnitudes de la tabla aunque todavía no hice la corrección de filtro). 
+Ademas los colores de las estrellas estandar  son 0 (fichero OUT\_EXTCOR)
+Yo voy a considerar mas adelante los coeficientes sin extinción (el procedimiento es el mismo) 
+
+
+\end{description}
+\end{itemize}
+
+\subsection*{Calibración}
+
+\begin{itemize}
+
+\item {Corrección del filtro} al los filtros estandar (calibrar con las estrellas estandar)
+
+Identificación de las estrellas
+
+\begin{description}
+\item PG0231 B = 4, A=0, C=1, D=2, E=3, *=8 (en las 2)
+\item PG2213 A=6, B=2, *=8 (solo en pg2213\_2)
+\item PG0918 C=4, B = 6, A=7, D=0, *=5
+
+\end{description}
+\item Sacamos las magnitudes de las tablas
+http://www.cfht.hawaii.edu/ObsInfo/Standards/Landolt/
+\begin{verbatim}
+V, B-V,V-R
+(0231A) : 12.77	0.710		0.405	
+(0231B) : 14.74	1.448		0.954	
+(0231C) : 13.70	0.671		0.399
+(0231D) : 14.03	1.088		0.675	
+(0231E) : 13.80	0.677		0.390	
+(0231*) : 16.11	-0.329		-0.162
+(2213A) : 14.18	0.673	 0.406	
+(2213B) : 12.71	0.749		0.427	
+(2213*) : 14.12	-0.217		-0.092	
+(0918A) : 14.49	0.536		0.325	
+(0918B) : 13.96	0.765		0.417	
+(0918C) : 13.54	0.631		0.367
+(0918D) : 12.27	1.044		0.575	
+(0918*) : 13.33	-0.271	-0.129	
+\end{verbatim}
+
+\item Sacamos las magnitudes  de los fichelos ALS
+y las ponemos en otro fichero en el mismo orden:
+
+\begin{verbatim}
+ python getMagVAndCol.py --obj=pg0231,pg0231_2 --number=0
+ python getMagVAndCol.py --obj=pg0231,pg0231_2 --number=4
+ python getMagVAndCol.py --obj=pg0231,pg0231_2 --number=1
+ python getMagVAndCol.py --obj=pg0231,pg0231_2 --number=2
+ python getMagVAndCol.py --obj=pg0231,pg0231_2 --number=3
+ python getMagVAndCol.py --obj=pg0231,pg0231_2 --number=8
+ python getMagVAndCol.py --obj=pg2213_2 --number=6
+ python getMagVAndCol.py --obj=pg2213_2 --number=2
+ python getMagVAndCol.py --obj=pg2213_2 --number=8
+ python getMagVAndCol.py --obj=pg0918 --number=7
+ python getMagVAndCol.py --obj=pg0918 --number=6
+ python getMagVAndCol.py --obj=pg0918 --number=4
+ python getMagVAndCol.py --obj=pg0918 --number=0
+ python getMagVAndCol.py --obj=pg0918 --number=5
+
+\end{verbatim}
+
+
+\item Tenemos los 2 ficheros con los valores del catalogo y las medidas (y corregida de extinción) por nosotros
+
+
+\item relaciones de los coeficientes
+\begin{description}
+\item Av + (b0-v0) * Bv = V- v0
+\item Abv + (b0 - v0) * Bbv = B -V
+\item Avr + (v0 - r0) * Bvr = V-R
+\end{description}
+
+Estos ficheros son la entrada para correctStdFilter.py
+que para cada relación de las 3 de arriba tenemos un sistema de 14 ecuaciones (14 estrellas de calibración) con 2 variables (2 de los 6 coeficientes en orden para cada una:Av, Bv, Abv, Bbv, Avr, Bvr)
+que se van a calcular con el metodo least square fit (14>2!) y luego se reclaculan V, B-V,V-R reemplazando los valores de los coeficientes 
+calculados arriba con las estrellas de calibración para todos los objetos del cúmulo
+
+
+{\tiny
+\begin{verbatim}
+
+bpopescu@colibri:/scratch1/tobs$  python correctStdFilter.py
+bpopescu@colibri:/scratch1/tobs$ for i in `ls M37New/ALSREAD-M37/RES*CORR_STD`; do echo $i; cat $i; echo ""; done
+\end{verbatim}
+}
+{\small
+\begin{verbatim}
+M37New/ALSREAD-M37/RES_OBJ_0_AVG_CORR_STD
+10.864 0.983 0.838 
+M37New/ALSREAD-M37/RES_OBJ_1_AVG_CORR_STD
+11.677 0.846 0.838 
+M37New/ALSREAD-M37/RES_OBJ_2_AVG_CORR_STD
+11.671 0.330 0.423 
+M37New/ALSREAD-M37/RES_OBJ_3_AVG_CORR_STD
+11.677 0.846 0.814 
+M37New/ALSREAD-M37/RES_OBJ_4_AVG_CORR_STD
+11.665 0.901 0.846 
+M37New/ALSREAD-M37/RES_OBJ_5_AVG_CORR_STD
+11.754 0.873 0.838 
+M37New/ALSREAD-M37/RES_OBJ_6_AVG_CORR_STD
+11.794 0.302 0.399 
+M37New/ALSREAD-M37/RES_OBJ_7_AVG_CORR_STD
+11.777 0.846 0.838 
+M37New/ALSREAD-M37/RES_OBJ_8_AVG_CORR_STD
+11.777 0.846 0.814 
+M37New/ALSREAD-M37/RES_OBJ_9_AVG_CORR_STD
+11.851 0.193 0.343 
 
 \end{verbatim}
 }
 
-\end{description}
+\item Como he dicho antes he considerado las magnitudes sin extinción: cuando tenga bien los coeficientes se puede rehacer el cálculo poniendo el flag extcor a getMagVAndCol.py y correctStdFilter.py para que considere los ficheros con magnitudes corregidas
+
+
 \end{itemize}
+
+
+
+\begin{figure}[!ht]
+ \centering
+ \includegraphics[scale=0.7]{cum.png}
+ \caption{\emph{m37 con valores exponeciales (flag --scale)}}
+\end{figure}
+
+
 
 
 
 \subsection*{Observaciones}
 \begin{itemize}
+
+\item Todos los ficheros (imagenes, resultatos de las correcciones de todos los objetos, ficheros python ) están en el repositorio git:
+https://github.com/beevageeva/tobs
+
 \item Instalacion en portátil: Fedora 20, iraf y ds9 de la página web, display no funciona
 
 \begin{verbatim}
@@ -768,20 +679,233 @@ inet sockets! set before ecl:
 export IMTDEV=inet:5137
 \end{verbatim}
 
-\item eliminar pixeles malos: ccdmask
-De fornma adicional quiero aplicar otro mask y quiero definir columnas 660 y 678 como columnas malas(para corregir por ejemplo img 65) y uso un fichero mask de forma:
-\begin{verbatim}
-cols (660,660) || cols (678,678) ? 1 : 0
-\end{verbatim}
-pero sale un error: "segmentation violation". Pero funciona con un fichero mask definido:
-\begin{verbatim}
-circle (220., 220., 50.) && circle (240., 220., 50.) ? 1 : 0
-\end{verbatim}
+
+\end{itemize}
+
+\subsection*{Coordenadas}
+Convención del signo de los angulos
+
+$\angle{QOP} > 0$
+\begin{tikzpicture}[scale=.8]
+
+% definitions
+\tkzDefPoint(0,0){O}
+\tkzDefPoint(3,3){P}
+\tkzDefPoint(3,0){Q}
+\tkzMarkAngle[label=QOP, size=1](Q,O,P)
+
+\tkzDrawSegments[thick](O,P)
+\tkzDrawSegments[thick](O,Q)
+\tkzDrawPoints(O,P,Q)
+
+% labels
+\tkzLabelPoints(Q,O,P)
+\end{tikzpicture}
+
+$\angle{QOP} < 0$  o $\angle{QOP} > 12:00:00h $ (los angulos mayores de 180 grados se representan con valor negativo)
+\begin{tikzpicture}[scale=.8]
+
+% definitions
+\tkzDefPoint(0,0){O}
+\tkzDefPoint(3,3){Q}
+\tkzDefPoint(3,0){P}
+\tkzMarkAngle[label=QOP, size=1](Q,O,P)
+
+\tkzDrawSegments[thick](O,P)
+\tkzDrawSegments[thick](O,Q)
+\tkzDrawPoints(O,P,Q)
+
+% labels
+\tkzLabelPoints(Q,O,P)
+\end{tikzpicture}
 
 
 
+\begin{itemize}
+\item O: centro de la tierra y de la esfera celeste (esfera que contiene la esfera de la tierra, el plano ecuadorial terrestre se extiende al plano ecuadorial celeste y la comparte igual que la tierra en 2 hemisferios: norte y sur y el plano del meridiano 0 se puede extender para toda la esfera celeste). La correspondiente de la latitud en la tierra es la declinación para la esfera celeste (negativa si el objeto a observar está en hemisferio sur celeste) y para la longitud la declinación recta(positiva desde el meridiano 0 en el sentido de la rotación dela tierra en torno a su propio eje y negativa en el otro sentido)
+\item P: punto del observador
+\item T: posicion del objeto observado
+\end{itemize}
+
+Proyeccion longitudinal
+P está en el hemisferio norte(latitud positiva) 
+\vspace{5cm}
+
+
+Declinacion negativa
+\begin{tikzpicture}[scale=.8]
+
+% definitions
+\tkzDefPoint(0,0){O}
+\tkzDefPoint(1,1){P}
+\tkzDefPoint(3.5,0){Q}
+\tkzDefPoint(3.42,-0.7){T}
+
+\tkzDefPointWith[orthogonal](P,O) \tkzGetPoint{P1} % find a point P1 orthogonal to PO
+\tkzInterLC(P,P1)(O,Q) \tkzGetPoints{M}{N} % find intersections of a line passing through A and Q with the large circle 
+\tkzInterLC(O,P)(O,Q) \tkzGetPoints{P4}{S} % find intersections of a line passing through A and Q with the large circle 
+\draw [shorten >= -5cm, shorten <=-5cm] (P4)--(S);
+\draw [shorten >= -5cm, shorten <=-5cm] (O)--(Q);
+\node at (8,0.5){Linea del ecuador} ; 
+\node at (8,6){Linea del zenith} ; 
+\draw [shorten >= -5cm, shorten <=-5cm] (P)--(T) ;
+\draw [shorten >= -5cm, shorten <=-5cm] (M)--(N) ;
+%\tkzMarkAngle[label=lat, size=1](Q,O,P)
+
+\tkzDrawSegments[thick](O,T)
+\tkzDrawSegments[thick](T,Q)
+\tkzDrawSegments[thick](P,Q)
+%\tkzMarkAngle[](Q,O,T)
+%\tkzMarkAngle[label=dec, size=1](Q,P,T)
+%\tkzMarkAngle[label=zd, size=1](P4,P,T)
+% drawing
+\tkzDrawCircle(O,P)
+\tkzDrawCircle(O,Q) 
+\node at (0,4){north pole};
+\node at (0,-4){south pole};
+\tkzDrawSegments[thick,gray](O,P)
+\tkzDrawPoints(O,P,Q,T,M,S,N)
+
+% labels
+\tkzLabelPoints(Q,T,O,M,S,N)
+\tkzLabelPoints[right](P)
+\end{tikzpicture}
+
+\vspace{5cm}
+
+Declinacion positiva
+\begin{tikzpicture}[scale=.8]
+
+% definitions
+\tkzDefPoint(0,0){O}
+\tkzDefPoint(1,1){P}
+\tkzDefPoint(3.5,0){Q}
+\tkzDefPoint(3.42,0.7){T}
+\node at (-5,0.5){Linea del ecuador} ; 
+\node at (8,6){Linea del zenith} ; 
+
+\tkzDefPointWith[orthogonal](P,O) \tkzGetPoint{P1} % find a point P1 orthogonal to PO
+\tkzInterLC(P,P1)(O,Q) \tkzGetPoints{M}{N} % find intersections of a line passing through A and Q with the large circle 
+\tkzInterLC(O,P)(O,Q) \tkzGetPoints{P4}{S} % find intersections of a line passing through A and Q with the large circle 
+\draw [shorten >= -5cm, shorten <=-5cm] (P4)--(S);
+\draw [shorten >= -5cm, shorten <=-5cm] (O)--(Q) ;
+\draw [shorten >= -5cm, shorten <=-5cm] (P)--(T) ;
+\draw [shorten >= -5cm, shorten <=-5cm] (M)--(N) ;
+%\tkzMarkAngle[label=lat, size=1](Q,O,P)
+
+\tkzDrawSegments[thick](O,T)
+\tkzDrawSegments[thick](T,Q)
+\tkzDrawSegments[thick](P,Q)
+%\tkzMarkAngle[](Q,O,T)
+%\tkzMarkAngle[label=dec, size=1](Q,P,T)
+%\tkzMarkAngle[label=zd, size=1](P4,P,T)
+% drawing
+\tkzDrawCircle(O,P)
+\tkzDrawCircle(O,Q)
+\node at (0,4){north pole};
+\node at (0,-4){south pole};
+\tkzDrawSegments[thick,gray](O,P)
+\tkzDrawPoints(O,P,Q,T,M,S,N)
+
+% labels
+\tkzLabelPoints(Q,T,O,M,S,N)
+\tkzLabelPoints[right](P)
+\end{tikzpicture}
+
+
+\vspace{5cm}
+\begin{itemize}
+\item OQ: linea del ecuador
+\item OP: linea del zenit del observador(la linea que une el observador con el centro de la tierra) perpendicular en la linea del horizonte MN(solo se pueden ver objetos en el arco MSN: objetos con declinación entre -(90$^\circ$ - latitude) y 180$^\circ$ - (90$^\circ$ - latitude) )
+\item PT: linea de vision del observador
+\item $\angle{QPT}$ Para la proyeccion longitudinal es declinacion medida por el telescopio(negativa si la estrella está debajo del plano ecuadorial) - el angulo en el cielo entre la dirección del telescopio orientado hacia el objeto que observamos y la direccion del telescopio orientado hacía un objeto que está en el ecuador celeste. 
+\item $\angle{QOT}$  declinacion  de la estrella (negativa si la estrella está debajo del plano ecuadorial) - medida desde un punto que esta en el ecuador de la tierra 
+\item $\angle{QOP}$  latitud
+\item $\angle{TPS}$  proyeccion en este plan del angulo zenith distance(formado por la linea del zenith y la direccion en cual apunta el telescopio) 
+\item En práctica esta es zenith distance (el azimuth no cuenta) ZD medida en grados  (dd:mm:ss) con dd entre 00 y 90
+y Airmass se aproxima como 1 / cos(ZD)
 
 
 \end{itemize}
+\begin{description}
+\item $\angle{POQ} = \angle{POT} + \angle{TOQ}$
+\item Q(el objeto de referrencia) está muy lejos asi que las distancias $OQ, PQ, PT, OT \gg OP$(el radio de la tierra) y  $\angle{TPQ}\approx \angle{TOQ} $ (la declinacion medida por el telescopio es aprox la declinacion del objeto observado medida desde un punto del ecuador terrestre si el objeto está bastante lejos)  	
+\item Ademas si se apunta el telescopio cerca al zenith $\angle{SPT} \approx \angle{POT} \approx 0$ así que $\angle{POQ} \approx \angle{TPQ}$(latitud $\approx$ declinación)
+\item Miramos las imagenes del flat del cielo (cuando el telescopio esta orientado aprox hacia el zenith) y determinamos la latitud 28:17:48
+(grados)
+\end{description}
+
+Proyeccion transversal
+P está al este del meridiano 0 terrestre(longitud positiva)
+
+\vspace{5cm}
+
+\begin{tikzpicture}[scale=.8]
+
+% definitions
+\tkzDefPoint(0,0){O}
+\tkzDefPoint(1,1){P}
+\tkzDefPoint(3.5,0){Q}
+\tkzDefPoint(-3.5,0){R}
+\tkzDefPoint(2.75,2.165){T}
+\tkzDefPoint(1.8, 3){Z}
+\node at (8,0.5){Meridian 0$^\circ$ terr} ; 
+\node at (6,8){Meridian 0$^\circ$ cel(Vernal eq)} ; 
+\node at (6.5,6){Linea del zenith} ; 
+\node at (8,5.5){Linea del visión} ; 
+
+\tkzDefPointWith[orthogonal](P,O) \tkzGetPoint{P1} % find a point P1 orthogonal to PO
+\tkzInterLC(P,P1)(O,Q) \tkzGetPoints{M}{N} % find intersections of a line passing through A and Q with the large circle 
+\tkzInterLC(O,P)(O,Q) \tkzGetPoints{P4}{S} % find intersections of a line passing through A and Q with the large circle 
+\tkzInterLC(Q,R)(O,P) \tkzGetPoints{G}{P5} % find intersections of a line passing through A and Q with the large circle 
+\draw [shorten >= -5cm, shorten <=-5cm] (P4)--(S);
+\draw [shorten >= -5cm, shorten <=-5cm] (O)--(Q) ;
+\draw [shorten >= -5cm, shorten <=-5cm] (O)--(Z) ;
+\draw [shorten >= -5cm, shorten <=-5cm] (P)--(T) ;
+\draw [shorten >= -5cm, shorten <=-5cm] (M)--(N) ;
+%\tkzMarkAngle[label=lat, size=1](Q,O,P)
+
+%\tkzDrawSegments[thick](O,T)
+%\tkzDrawSegments[thick](T,Q)
+\tkzDrawSegments[thick](P,Q)
+\tkzDrawSegments[thick](P,Z)
+\tkzDrawSegments[thick](O,Z)
+\tkzDrawSegments[thick](O,T)
+%\tkzMarkAngle[](Q,O,T)
+%\tkzMarkAngle[label=dec, size=1](Q,P,T)
+%\tkzMarkAngle[label=zd, size=1](P4,P,T)
+% drawing
+\tkzDrawCircle(O,P)
+\tkzDrawCircle(O,Q)
+\draw [->,line width=1pt] (0,-4) arc[x radius=0.5cm, y radius =.5cm, start angle=-200, end angle=20];
+\node at (0,-5){Rotacion de la tierra al torno de su eje} ; 
+\tkzDrawSegments[thick,gray](O,P)
+\tkzDrawPoints(O,P,Q,T,M,S,N,Z,R,G)
+
+% labels
+\tkzLabelPoints(Q,T,M,N,R,G)
+\tkzLabelPoints[left](P)
+\tkzLabelPoints[above](O,Z,S)
+\end{tikzpicture}
+
+\vspace{5cm}
+\begin{itemize}
+\item Z vernal equinox
+\item G punto en la tierra en el meridiano 0
+\item $\angle{ZOQ}$ UniversalTime
+\item $\angle{ZPT} \approx \angle{ZOT}$ RightAscension
+\item $\angle{ZPS} \approx \angle{ZOS}$ SiderealTime
+\item $\angle{SPT} \approx \angle{SOT}$ object hour
+\item (ST = RA + h), cuando el objeto a observar está justo arriba(h=0) ST = RA
+\item $\angle{QOP}$ longitud
+\end{itemize}
+
+
+\begin{description}
+\item Cuando Sidereal Time es aprox 0 UT representa la longitud
+\item longitud 22:21:45(hours) = -24:34:45(degrees)    
+
+\end{description}
+
 
 \end{document}

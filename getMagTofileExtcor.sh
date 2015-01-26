@@ -1,0 +1,14 @@
+ python getMagVAndCol.py --obj=pg0231,pg0231_2 --number=0  --extcor >> OUT_EXTCOR
+ python getMagVAndCol.py --obj=pg0231,pg0231_2 --number=4  --extcor >> OUT_EXTCOR
+ python getMagVAndCol.py --obj=pg0231,pg0231_2 --number=1  --extcor >> OUT_EXTCOR
+ python getMagVAndCol.py --obj=pg0231,pg0231_2 --number=2  --extcor >> OUT_EXTCOR
+ python getMagVAndCol.py --obj=pg0231,pg0231_2 --number=3  --extcor >> OUT_EXTCOR
+ python getMagVAndCol.py --obj=pg0231,pg0231_2 --number=8  --extcor >> OUT_EXTCOR
+ python getMagVAndCol.py --obj=pg2213_2 --number=6  --extcor >> OUT_EXTCOR
+ python getMagVAndCol.py --obj=pg2213_2 --number=2  --extcor >> OUT_EXTCOR
+ python getMagVAndCol.py --obj=pg2213_2 --number=8  --extcor >> OUT_EXTCOR
+ python getMagVAndCol.py --obj=pg0918 --number=7  --extcor >> OUT_EXTCOR
+ python getMagVAndCol.py --obj=pg0918 --number=6  --extcor >> OUT_EXTCOR
+ python getMagVAndCol.py --obj=pg0918 --number=4  --extcor >> OUT_EXTCOR
+ python getMagVAndCol.py --obj=pg0918 --number=0  --extcor >> OUT_EXTCOR
+ python getMagVAndCol.py --obj=pg0918 --number=5  --extcor >> OUT_EXTCOR

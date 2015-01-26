@@ -1,0 +1,14 @@
+ python getMagVAndCol.py --obj=pg0231,pg0231_2 --number=0 >> OUT
+ python getMagVAndCol.py --obj=pg0231,pg0231_2 --number=4 >> OUT
+ python getMagVAndCol.py --obj=pg0231,pg0231_2 --number=1 >> OUT
+ python getMagVAndCol.py --obj=pg0231,pg0231_2 --number=2 >> OUT
+ python getMagVAndCol.py --obj=pg0231,pg0231_2 --number=3 >> OUT
+ python getMagVAndCol.py --obj=pg0231,pg0231_2 --number=8 >> OUT
+ python getMagVAndCol.py --obj=pg2213_2 --number=6 >> OUT
+ python getMagVAndCol.py --obj=pg2213_2 --number=2 >> OUT
+ python getMagVAndCol.py --obj=pg2213_2 --number=8 >> OUT
+ python getMagVAndCol.py --obj=pg0918 --number=7 >> OUT
+ python getMagVAndCol.py --obj=pg0918 --number=6 >> OUT
+ python getMagVAndCol.py --obj=pg0918 --number=4 >> OUT
+ python getMagVAndCol.py --obj=pg0918 --number=0 >> OUT
+ python getMagVAndCol.py --obj=pg0918 --number=5 >> OUT
