@@ -714,7 +714,39 @@ python createMontage.py m37
 
 \item Extinción atmosférica
 \begin{description}
-\item Hay que elegir una estrella del cúmulo a diferentes masas de aire
+\item Hay que elegir una estrella del cúmulo  que aparezca en todas las imagenes ya que no hay muchas:
+estrella 5
+{\tiny
+\begin{verbatim}
+[beatrice@localhost tobs]$ cat M37New/ALSREAD-M37/RESOBJ_5
+682.4 327.4 14.5 /home/beatrice/tobs/M37New/object/R/Nov30100a.fits
+682.6 328.2 14.6 /home/beatrice/tobs/M37New/object/R/Nov30097a.fits
+682.5 327.6 13.8 /home/beatrice/tobs/M37New/object/R/Nov30096a.fits
+682.3 327.8 14.5 /home/beatrice/tobs/M37New/object/R/Nov30103a.fits
+682.6 327.6 15.0 /home/beatrice/tobs/M37New/object/V/Nov30104a.fits
+682.8 328.1 15.0 /home/beatrice/tobs/M37New/object/V/Nov30101a.fits
+682.5 327.8 15.1 /home/beatrice/tobs/M37New/object/V/Nov30098a.fits
+682.8 328.0 16.6 /home/beatrice/tobs/M37New/object/B/Nov30102a.fits
+682.2 327.5 16.6 /home/beatrice/tobs/M37New/object/B/Nov30099a.fits
+682.9 328.2 16.5 /home/beatrice/tobs/M37New/object/B/Nov30105a.fits
+
+[beatrice@localhost tobs]$ for i in `cat M37New/ALSREAD-M37/RESOBJ_5| cut -d' ' -f4`; do python dispHeader.py $i | grep AIRMASS; done
+header[AIRMASS] = 1.059
+header[AIRMASS] = 1.052
+header[AIRMASS] = 1.049
+header[AIRMASS] = 1.067
+header[AIRMASS] = 1.069
+header[AIRMASS] = 1.061
+header[AIRMASS] = 1.054
+header[AIRMASS] = 1.064
+header[AIRMASS] = 1.056
+header[AIRMASS] = 1.072
+
+[beatrice@localhost tobs]$ cat M37New/ALSREAD-M37/RESOBJ_5
+
+\end{verbatim}
+}
+
 \end{description}
 \end{itemize}
 
